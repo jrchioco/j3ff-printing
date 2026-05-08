@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>J3FF Printing Services</title>
+        <link rel="icon" href="logo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="logo.svg" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        />
+        <style>
+            :root {
+                --bg-primary: #080808;
+                --bg-secondary: #0f0f0f;
+                --bg-elevated: #161616;
+                --accent-cyan: #00b4d8;
+                --accent-magenta: #ff006e;
+                --accent-yellow: #ffbe0b;
+                --text: #f8f8f8;
+                --text-muted: #6b6b6b;
+                --text-dim: #3d3d3d;
+                --border: #222;
+                --borderlight: #2a2a2a;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: "Outfit", sans-serif;
+                background: var(--bg-primary);
+                color: var(--text);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            /* Background effects */
+            .bg-grid {
+                position: fixed;
+                inset: 0;
+                background-image:
+                    linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+                background-size: 60px 60px;
+                opacity: 0.3;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .bg-glow {
+                position: fixed;
+                width: 600px;
+                height: 600px;
+                border-radius: 50%;
+                filter: blur(120px);
+                opacity: 0.15;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .bg-glow-1 {
+                top: -200px;
+                right: -100px;
+                background: var(--accent-cyan);
+                animation: float 15s ease-in-out infinite;
+            }
+
+            .bg-glow-2 {
+                bottom: -300px;
+                left: -200px;
+                background: var(--accent-magenta);
+                animation: float 18s ease-in-out infinite reverse;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+                50% {
+                    transform: translate(30px, 30px);
+                }
+            }
+
+            /* Header */
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(8, 8, 8, 0.85);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+                z-index: 1000;
+                padding: 1.25rem 2rem;
+            }
+
+            nav {
+                max-width: 1300px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-family: "Syne", sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: 3px;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .logo img {
+                height: 40px;
+                width: auto;
+            }
+
+            .logo span {
+                color: var(--accent-cyan);
+            }
+
+            .cmyk-badge {
+                display: flex;
+                gap: 4px;
+            }
+
+            .cmyk-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+            }
+
+            .cmyk-dot:nth-child(1) {
+                background: var(--accent-cyan);
+            }
+            .cmyk-dot:nth-child(2) {
+                background: var(--accent-magenta);
+            }
+            .cmyk-dot:nth-child(3) {
+                background: var(--accent-yellow);
+            }
+            .cmyk-dot:nth-child(4) {
+                background: var(--text);
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2.5rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                color: var(--text-muted);
+                text-decoration: none;
+                font-weight: 400;
+                font-size: 0.95rem;
+                transition: all 0.3s;
+                position: relative;
+            }
+
+            .nav-links a::after {
+                content: "";
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: var(--accent-cyan);
+                transition: width 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: var(--text);
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+
+            /* Hero */
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 8rem 2rem 6rem;
+            }
+
+            .hero-content {
+                max-width: 900px;
+            }
+
+            .hero-label {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.5rem 1rem;
+                background: var(--bg-elevated);
+                border: 1px solid var(--borderlight);
+                border-radius: 50px;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-bottom: 2rem;
+                animation: fade-in-up 0.8s ease-out;
+            }
+
+            @keyframes fade-in-up {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero h1 {
+                font-family: "Syne", sans-serif;
+                font-size: clamp(3rem, 8vw, 6.5rem);
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                line-height: 1.05;
+                letter-spacing: -2px;
+                animation: fade-in-up 0.8s ease-out 0.15s both;
+            }
+
+            .hero h1 .gradient-text {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent-cyan),
+                    var(--accent-magenta),
+                    var(--accent-yellow)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: var(--text-muted);
+                margin-bottom: 2.5rem;
+                max-width: 550px;
+                margin-left: auto;
+                margin-right: auto;
+                font-weight: 300;
+                animation: fade-in-up 0.8s ease-out 0.3s both;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 1rem 2.5rem;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent-cyan),
+                    #0096c7
+                );
+                color: var(--bg-primary);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1rem;
+                border-radius: 50px;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border: none;
+                animation: fade-in-up 0.8s ease-out 0.45s both;
+            }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 20px 40px rgba(0, 180, 216, 0.3);
+            }
+
+            .btn-arrow {
+                transition: transform 0.3s;
+            }
+
+            .btn:hover .btn-arrow {
+                transform: translateX(4px);
+            }
+
+            /* Services */
+            .services {
+                padding: 8rem 2rem;
+                max-width: 1300px;
+                margin: 0 auto;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+
+            .section-label {
+                font-size: 0.85rem;
+                color: var(--accent-cyan);
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                margin-bottom: 1rem;
+            }
+
+            .section-title {
+                font-family: "Syne", sans-serif;
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                font-weight: 600;
+            }
+
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                background: var(--bg-secondary);
+                padding: 2.5rem;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .service-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent-cyan),
+                    var(--accent-magenta),
+                    var(--accent-yellow)
+                );
+                opacity: 0;
+                transition: opacity 0.4s;
+            }
+
+            .service-card::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    135deg,
+                    rgba(0, 180, 216, 0.04),
+                    rgba(255, 0, 110, 0.04)
+                );
+                opacity: 0;
+                transition: opacity 0.4s;
+            }
+
+            .service-card:hover {
+                background: var(--bg-elevated);
+                border-color: var(--borderlight);
+                transform: translateY(-6px) scale(1.01);
+            }
+
+            .service-card:hover::before {
+                opacity: 1;
+            }
+
+            .service-card:hover::after {
+                opacity: 1;
+            }
+
+            .service-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 1.5rem;
+                position: relative;
+            }
+
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                background: var(--bg-primary);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                border: 1px solid var(--border);
+                transition: all 0.3s;
+            }
+
+            .service-card:hover .service-icon {
+                transform: scale(1.1) rotate(3deg);
+                border-color: var(--accent-cyan);
+            }
+
+            .service-number {
+                font-family: "Syne", sans-serif;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: var(--text-dim);
+                transition: all 0.3s;
+            }
+
+            .service-card:hover .service-number {
+                color: var(--accent-cyan);
+            }
+
+            .service-card h3 {
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+            }
+
+            .service-card p {
+                color: var(--text-muted);
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            /* About */
+            .about {
+                padding: 8rem 2rem;
+                background: var(--bg-secondary);
+                position: relative;
+            }
+
+            .about::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--borderlight),
+                    transparent
+                );
+            }
+
+            .about-content {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .about p {
+                color: var(--text-muted);
+                font-size: 1.15rem;
+                line-height: 1.9;
+                font-weight: 300;
+            }
+
+            /* Features */
+            .features {
+                padding: 6rem 2rem;
+                max-width: 1300px;
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .feature-card {
+                background: var(--bg-secondary);
+                padding: 2rem;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                text-align: center;
+                transition: all 0.3s;
+            }
+
+            .feature-card:hover {
+                background: var(--bg-elevated);
+                border-color: var(--borderlight);
+                transform: translateY(-4px);
+            }
+
+            .feature-icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                transition: transform 0.3s;
+            }
+
+            .feature-card:hover .feature-icon {
+                transform: scale(1.2);
+            }
+
+            .feature-card h4 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .feature-card p {
+                color: var(--text-muted);
+                font-size: 0.9rem;
+            }
+
+            /* Contact */
+            .contact {
+                padding: 8rem 2rem;
+                max-width: 600px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .contact-cards {
+                display: flex;
+                justify-content: center;
+                gap: 1.25rem;
+                margin-top: 3rem;
+            }
+
+            .contact-card {
+                background: var(--bg-secondary);
+                padding: 2.5rem 2rem;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                text-align: center;
+                transition: all 0.3s;
+                min-width: 250px;
+                height: 180px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-decoration: none;
+                cursor: pointer;
+                color: inherit;
+            }
+
+            .contact-card:hover {
+                background: var(--bg-elevated);
+                border-color: var(--borderlight);
+                transform: translateY(-4px);
+            }
+
+            .contact-card-icon {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                transition: transform 0.3s;
+            }
+
+            .contact-card:hover .contact-card-icon {
+                transform: scale(1.2);
+            }
+
+            .contact-card h4 {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 0.5rem;
+            }
+
+            /* Facebook Page Link */
+            .facebook-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 2rem;
+                padding: 0.75rem 1.5rem;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 50px;
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                transition: all 0.3s;
+            }
+
+            .facebook-link:hover {
+                background: var(--bg-elevated);
+                border-color: #1877f2;
+                color: #1877f2;
+            }
+
+            /* Footer */
+            footer {
+                padding: 3rem 2rem;
+                text-align: center;
+                border-top: 1px solid var(--border);
+            }
+
+            footer .cmyk-badge {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+
+            footer p {
+                color: var(--text-dim);
+                font-size: 0.9rem;
+            }
+
+            /* Canvas for particles */
+            .bg-canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            /* Mobile */
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+
+                .hero h1 {
+                    font-size: 2.5rem;
+                    letter-spacing: -1px;
+                }
+
+                .services-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .features-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .contact-cards {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .contact-card {
+                    width: 100%;
+                    max-width: 300px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <canvas class="bg-canvas" id="bgCanvas"></canvas>
+        <div class="bg-grid"></div>
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="logo.svg" alt="J3FF Printing" />
+                    <span>PRINTING SERVICES</span>
+                    <div class="cmyk-badge">
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Why Us</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-label">
+                    <div class="cmyk-badge">
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                    </div>
+                    Professional Printing Services
+                </div>
+                <h1>
+                    <span class="gradient-text">Premium Prints</span
+                    ><br />Delivered Perfect
+                </h1>
+                <p>
+                    Quality printing solutions for every need. From business
+                    materials to personal projects. bring your vision to life
+                    with vibrant, professional results.
+                </p>
+                <a href="#contact" class="btn"
+                    >Get a Quote <span class="btn-arrow">→</span></a
+                >
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="section-header">
+                <p class="section-label">What We Offer</p>
+                <h2 class="section-title">Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📄</div>
+                        <span class="service-number">01</span>
+                    </div>
+                    <h3>Document Printing</h3>
+                    <p>
+                        High-resolution black & white and color printing for
+                        documents, reports, presentations, and manuals of any
+                        size.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🎨</div>
+                        <span class="service-number">02</span>
+                    </div>
+                    <h3>Stickers & Marketing</h3>
+                    <p>
+                        ✨ Custom stickers, labels, brochures, flyers, posters
+                        and banners that make your brand memorable and
+                        professional.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📔</div>
+                        <span class="service-number">03</span>
+                    </div>
+                    <h3>Bindery & Finishing</h3>
+                    <p>
+                        Professional binding, lamination, folding, scoring, and
+                        custom finishing for a polished final product.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">👕</div>
+                        <span class="service-number">04</span>
+                    </div>
+                    <h3>Custom Merchandise</h3>
+                    <p>
+                        Vinyl printing, heat transfers, and custom printed
+                        merchandise for events, teams, or your business.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📦</div>
+                        <span class="service-number">05</span>
+                    </div>
+                    <h3>Bulk Orders</h3>
+                    <p>
+                        Volume discounts with fast turnaround. Whether you need
+                        100 or 10,000 copies, we deliver on time.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">✨</div>
+                        <span class="service-number">06</span>
+                    </div>
+                    <h3>Design Services</h3>
+                    <p>
+                        Need a design? Our creative team transforms your ideas
+                        into print-ready files that look amazing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="section-header">
+                <p class="section-label">Why Choose Us</p>
+                <h2 class="section-title">The J3FF Difference</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h4>
+                        <span style="color: var(--accent-cyan)"
+                            >We'll catch it first</span
+                        >
+                    </h4>
+                    <p>
+                        Low-res file? Wrong bleed margin? We catch it before it
+                        prints not after you've paid.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h4>
+                        <span style="color: var(--accent-magenta)"
+                            >You talk to the person doing the work</span
+                        >
+                    </h4>
+                    <p>
+                        No middlemen, no lost messages. Ask us anything, get a
+                        straight answer.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h4>
+                        <span style="color: var(--accent-yellow)"
+                            >We've been there</span
+                        >
+                    </h4>
+                    <p>
+                        We understand tight budgets and fast deadlines. We'll
+                        work with you, not around you.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🙋</div>
+                    <h4>Walk-ins Welcome</h4>
+                    <p>Visit us anytime</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="about-content">
+                <p class="section-label">Who We Are</p>
+                <h2 class="section-title" style="margin-bottom: 2rem">
+                    A Family Behind Every Print
+                </h2>
+                <p>
+                    J3FF Printing Services isn't a franchise or a copy shop
+                    chain. It's us.
+                    <span style="color: #c4c4c4; font-weight: 600"
+                        >A family that has spent years getting this right</span
+                    >, learning which paper holds color best, which finishes
+                    last, and how to treat every client like a repeat customer
+                    from day one.
+                </p>
+                <p style="margin-top: 1rem">
+                    Whether you're printing Stickers for your brand, Flyers for
+                    a local event, Business Cards that need to impress, we
+                    handle your job like our name is on it. Because it is.
+                </p>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="section-header">
+                <p class="section-label">Let's Talk</p>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+            <div class="contact-cards">
+                <a
+                    href="mailto:jtc20007@gmail.com?subject=Inquiry"
+                    class="contact-card"
+                >
+                    <div class="contact-card-icon">📧</div>
+                    <h4>Email</h4>
+                    <p>jtc20007@gmail.com</p>
+                </a>
+                <a href="tel:+639193560058" class="contact-card">
+                    <div class="contact-card-icon">📱</div>
+                    <h4>Phone</h4>
+                    <p>+63 919-356-0058</p>
+                </a>
+                <a
+                    href="https://www.google.com/maps/place/BLK+7+gumaoc+central/@14.7999213,121.0652183,3a,75y,340.84h,84.81t/data=!3m7!1e1!3m5!1sMy3d3x3KeRAJbo4zQr_5PQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D5.189999999999998%26panoid%3DMy3d3x3KeRAJbo4zQr_5PQ%26yaw%3D340.84!7i16384!8i8192!4m7!3m6!1s0x3397af4fb8442e39:0x5c1a1c67f7da0e22!8m2!3d14.8016476!4d121.0642384!10e5!16s%2Fg%2F11p_5v7htw?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    class="contact-card"
+                >
+                    <div class="contact-card-icon">📍</div>
+                    <h4>Location</h4>
+                    <p>
+                        Blk. 7, Gumaoc Central<br />City of San Jose Del Monte,
+                        Bulacan.
+                    </p>
+                </a>
+            </div>
+            <a
+                href="https://www.facebook.com/J3FFPRINTING"
+                target="_blank"
+                class="facebook-link"
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.955 10.125 11.854v-8.385H7.078v-3.47h3.047V9.283c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.028 24 18.062 24 12.073z"
+                    />
+                </svg>
+                Visit Our Facebook Page
+            </a>
+        </section>
+
+        <footer>
+            <div class="cmyk-badge">
+                <div class="cmyk-dot"></div>
+                <div class="cmyk-dot"></div>
+                <div class="cmyk-dot"></div>
+                <div class="cmyk-dot"></div>
+            </div>
+            <p>&copy; 2026 J3FF Printing Services. All rights reserved.</p>
+        </footer>
+
+        <script>
+            // Floating particles
+            const canvas = document.getElementById("bgCanvas");
+            const ctx = canvas.getContext("2d");
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener("resize", resize);
+
+            const particles = [];
+            const particleCount = 35;
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.4;
+                    this.speedY = (Math.random() - 0.5) * 0.4;
+                    this.opacity = Math.random() * 0.25 + 0.08;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (
+                        this.x < 0 ||
+                        this.x > canvas.width ||
+                        this.y < 0 ||
+                        this.y > canvas.height
+                    ) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach((p) => {
+                    p.update();
+                    p.draw();
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        </script>
+    </body>
+</html>
