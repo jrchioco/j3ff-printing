@@ -472,74 +472,208 @@
                 margin: 0 auto;
             }
 
-            .gallery-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1.5rem;
-                margin-top: 3rem;
-            }
-
-            .gallery-item {
-                position: relative;
-                aspect-ratio: 4/3;
-                border-radius: 16px;
+            .gallery-ticker-wrapper {
                 overflow: hidden;
-                background: var(--bg-secondary);
-                border: 1px solid var(--border);
+                width: 100%;
+                margin-top: 3rem;
+                padding: 2rem 0;
                 cursor: pointer;
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             }
 
-            .gallery-item img {
+            .gallery-ticker {
+                display: flex;
+                gap: 1.5rem;
+                animation: ticker-scroll 30s linear infinite;
+                width: max-content;
+            }
+
+            .gallery-ticker-wrapper:hover .gallery-ticker {
+                animation-play-state: paused;
+            }
+
+            .gallery-ticker-item {
+                flex-shrink: 0;
+                width: 300px;
+                height: 225px;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid var(--border);
+                background: var(--bg-secondary);
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .gallery-ticker-wrapper:hover .gallery-ticker-item {
+                transform: scale(1.5);
+            }
+
+            .gallery-ticker-item img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: transform 0.5s ease;
             }
 
-            .gallery-item::before {
-                content: "";
-                position: absolute;
+            @keyframes ticker-scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+
+            .gallery-modal {
+                position: fixed;
                 inset: 0;
-                background: linear-gradient(
-                    135deg,
-                    rgba(0, 180, 216, 0.1),
-                    rgba(255, 0, 110, 0.1)
-                );
+                background: rgba(8, 8, 8, 0.6);
+                backdrop-filter: blur(8px);
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 opacity: 0;
-                transition: opacity 0.4s;
-                z-index: 1;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
             }
 
-            .gallery-item::after {
-                content: "🔍";
+            .gallery-modal.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .gallery-modal-content {
+                position: relative;
+                width: 90vw;
+                max-width: 1000px;
+                background: var(--bg-secondary);
+                border-radius: 16px;
+                border: 1px solid var(--borderlight);
+                overflow: hidden;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-modal.active .gallery-modal-content {
+                transform: scale(1);
+            }
+
+            .gallery-modal-viewport {
+                position: relative;
+                overflow: hidden;
+                aspect-ratio: 4/3;
+            }
+
+            .gallery-modal-track {
+                display: flex;
+                height: 100%;
+                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .gallery-modal-slide {
+                flex: 0 0 100%;
+                height: 100%;
+            }
+
+            .gallery-modal-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .gallery-modal-nav {
                 position: absolute;
                 top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0);
-                font-size: 2rem;
-                opacity: 0;
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                z-index: 2;
+                transform: translateY(-50%);
+                width: 50px;
+                height: 50px;
+                background: rgba(8, 8, 8, 0.8);
+                border: 1px solid var(--borderlight);
+                border-radius: 50%;
+                color: var(--text);
+                font-size: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                backdrop-filter: blur(10px);
             }
 
-            .gallery-item:hover {
+            .gallery-modal-nav:hover {
+                background: var(--bg-elevated);
                 border-color: var(--accent-cyan);
-                transform: translateY(-6px);
-                box-shadow: 0 20px 40px rgba(0, 180, 216, 0.15);
             }
 
-            .gallery-item:hover::before {
-                opacity: 1;
+            .gallery-modal-prev { left: 1rem; }
+            .gallery-modal-next { right: 1rem; }
+
+            .gallery-modal-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                background: rgba(8, 8, 8, 0.8);
+                border: 1px solid var(--borderlight);
+                border-radius: 50%;
+                color: var(--text);
+                font-size: 1rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                backdrop-filter: blur(10px);
+                z-index: 10;
             }
 
-            .gallery-item:hover::after {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
+            .gallery-modal-close:hover {
+                background: var(--bg-elevated);
+                border-color: var(--accent-magenta);
+                transform: rotate(90deg);
             }
 
-            .gallery-item:hover img {
-                transform: scale(1.05);
+            .gallery-modal-counter {
+                position: absolute;
+                bottom: 1rem;
+                right: 1rem;
+                background: rgba(8, 8, 8, 0.8);
+                backdrop-filter: blur(10px);
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                font-weight: 500;
+                border: 1px solid var(--borderlight);
+                z-index: 10;
+            }
+
+            .gallery-modal-counter .current {
+                color: var(--accent-cyan);
+                font-weight: 700;
+            }
+
+            .gallery-modal-dots {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 1.5rem;
+                background: var(--bg-secondary);
+            }
+
+            .gallery-modal-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--bg-elevated);
+                border: 1px solid var(--borderlight);
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .gallery-modal-dot:hover {
+                border-color: var(--accent-cyan);
+            }
+
+            .gallery-modal-dot.active {
+                background: var(--accent-cyan);
+                border-color: var(--accent-cyan);
+                transform: scale(1.2);
             }
 
             /* Lightbox */
@@ -818,6 +952,24 @@
                     max-width: 300px;
                 }
 
+                .gallery-ticker-item {
+                    width: 200px;
+                    height: 150px;
+                }
+
+                .gallery-ticker-wrapper:hover .gallery-ticker-item {
+                    transform: scale(1.2);
+                }
+
+                .gallery-modal-nav {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1rem;
+                }
+
+                .gallery-modal-prev { left: 0.5rem; }
+                .gallery-modal-next { right: 0.5rem; }
+
                 .lightbox-prev {
                     left: 1rem;
                 }
@@ -966,40 +1118,69 @@
                 <p style="color: var(--text-muted); margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">
                     See what we can do. From stickers to merchandise, every print is crafted with care.
                 </p>
-                <a href="carousel-js.html" class="btn" style="margin-top: 2rem;">
-                    View Gallery <span class="btn-arrow">→</span>
-                </a>
             </div>
-            <div class="gallery-grid" id="galleryGrid">
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" loading="lazy" />
-                </div>
-                <div class="gallery-item" onclick="location.href='carousel-js.html'">
-                    <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" loading="lazy" />
+            <div class="gallery-ticker-wrapper" id="galleryTickerWrapper">
+                <div class="gallery-ticker" id="galleryTicker">
+                    <div class="gallery-ticker-item" data-index="0">
+                        <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="1">
+                        <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="2">
+                        <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="3">
+                        <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="4">
+                        <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="5">
+                        <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="6">
+                        <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="7">
+                        <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="8">
+                        <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="9">
+                        <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="0">
+                        <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="1">
+                        <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="2">
+                        <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="3">
+                        <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="4">
+                        <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="5">
+                        <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="6">
+                        <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="7">
+                        <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="8">
+                        <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" />
+                    </div>
+                    <div class="gallery-ticker-item" data-index="9">
+                        <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -1128,12 +1309,29 @@
             </a>
         </section>
 
-        <div class="lightbox" id="lightbox">
-            <button class="lightbox-close" id="lightboxClose">✕</button>
-            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">←</button>
-            <button class="lightbox-nav lightbox-next" id="lightboxNext">→</button>
-            <div class="lightbox-content">
-                <img src="" alt="Gallery image" id="lightboxImage" />
+        <div class="gallery-modal" id="galleryModal">
+            <button class="gallery-modal-close" id="galleryModalClose">✕</button>
+            <button class="gallery-modal-nav gallery-modal-prev" id="galleryModalPrev">←</button>
+            <button class="gallery-modal-nav gallery-modal-next" id="galleryModalNext">→</button>
+            <div class="gallery-modal-content">
+                <div class="gallery-modal-viewport">
+                    <div class="gallery-modal-track" id="galleryModalTrack">
+                        <div class="gallery-modal-slide"><img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" /></div>
+                        <div class="gallery-modal-slide"><img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" /></div>
+                    </div>
+                </div>
+                <div class="gallery-modal-counter">
+                    <span class="current" id="galleryModalCurrent">1</span>/<span id="galleryModalTotal">10</span>
+                </div>
+                <div class="gallery-modal-dots" id="galleryModalDots"></div>
             </div>
         </div>
 
@@ -1215,55 +1413,70 @@
             animate();
         </script>
         <script>
-            const galleryItems = document.querySelectorAll(".gallery-item");
-            const lightbox = document.getElementById("lightbox");
-            const lightboxImage = document.getElementById("lightboxImage");
-            const lightboxClose = document.getElementById("lightboxClose");
-            const lightboxPrev = document.getElementById("lightboxPrev");
-            const lightboxNext = document.getElementById("lightboxNext");
-            let currentIndex = 0;
+            const modal = document.getElementById("galleryModal");
+            const modalTrack = document.getElementById("galleryModalTrack");
+            const modalClose = document.getElementById("galleryModalClose");
+            const modalPrev = document.getElementById("galleryModalPrev");
+            const modalNext = document.getElementById("galleryModalNext");
+            const modalCurrent = document.getElementById("galleryModalCurrent");
+            const modalTotal = document.getElementById("galleryModalTotal");
+            const modalDotsContainer = document.getElementById("galleryModalDots");
+            const tickerItems = document.querySelectorAll(".gallery-ticker-item");
+            let modalIndex = 0;
+            const totalImages = 10;
 
-            function openLightbox(index) {
-                currentIndex = index;
-                const item = galleryItems[index];
-                const src = item.dataset.src;
-                lightboxImage.src = src;
-                lightbox.classList.add("active");
+            modalTotal.textContent = totalImages;
+
+            for (let i = 0; i < totalImages; i++) {
+                const dot = document.createElement("button");
+                dot.className = "gallery-modal-dot" + (i === 0 ? " active" : "");
+                dot.addEventListener("click", () => goToModalSlide(i));
+                modalDotsContainer.appendChild(dot);
+            }
+            const dots = modalDotsContainer.querySelectorAll(".gallery-modal-dot");
+
+            function goToModalSlide(index) {
+                modalIndex = index;
+                modalTrack.style.transform = `translateX(-${modalIndex * 100}%)`;
+                modalCurrent.textContent = modalIndex + 1;
+                dots.forEach((dot, i) => dot.classList.toggle("active", i === modalIndex));
+            }
+
+            function openModal(index) {
+                goToModalSlide(index);
+                modal.classList.add("active");
                 document.body.style.overflow = "hidden";
             }
 
-            function closeLightbox() {
-                lightbox.classList.remove("active");
+            function closeModal() {
+                modal.classList.remove("active");
                 document.body.style.overflow = "";
             }
 
-            function showPrev() {
-                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-                lightboxImage.src = galleryItems[currentIndex].dataset.src;
-            }
+            modalPrev.addEventListener("click", () => goToModalSlide((modalIndex - 1 + totalImages) % totalImages));
+            modalNext.addEventListener("click", () => goToModalSlide((modalIndex + 1) % totalImages));
+            modalClose.addEventListener("click", closeModal);
+            modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
 
-            function showNext() {
-                currentIndex = (currentIndex + 1) % galleryItems.length;
-                lightboxImage.src = galleryItems[currentIndex].dataset.src;
-            }
-
-            galleryItems.forEach((item, index) => {
-                item.addEventListener("click", () => openLightbox(index));
-            });
-
-            lightboxClose.addEventListener("click", closeLightbox);
-            lightboxPrev.addEventListener("click", showPrev);
-            lightboxNext.addEventListener("click", showNext);
-            lightbox.addEventListener("click", (e) => {
-                if (e.target === lightbox) closeLightbox();
+            tickerItems.forEach((item, index) => {
+                item.addEventListener("click", () => openModal(index % totalImages));
             });
 
             document.addEventListener("keydown", (e) => {
-                if (!lightbox.classList.contains("active")) return;
-                if (e.key === "Escape") closeLightbox();
-                if (e.key === "ArrowLeft") showPrev();
-                if (e.key === "ArrowRight") showNext();
+                if (!modal.classList.contains("active")) return;
+                if (e.key === "Escape") closeModal();
+                if (e.key === "ArrowLeft") modalPrev.click();
+                if (e.key === "ArrowRight") modalNext.click();
             });
+
+            let touchStartX = 0;
+            modalTrack.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            modalTrack.addEventListener("touchend", (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? modalNext.click() : modalPrev.click();
+                }
+            }, { passive: true });
         </script>
     </body>
 </html>
