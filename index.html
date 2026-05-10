@@ -476,7 +476,7 @@
                 overflow: hidden;
                 width: 100%;
                 margin-top: 3rem;
-                padding: 2rem 0;
+                padding: 3rem 0;
                 cursor: pointer;
             }
 
@@ -500,10 +500,12 @@
                 border: 1px solid var(--border);
                 background: var(--bg-secondary);
                 transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: relative;
             }
 
-            .gallery-ticker-wrapper:hover .gallery-ticker-item {
-                transform: scale(1.5);
+            .gallery-ticker-item:hover {
+                transform: scale(1.15);
+                z-index: 10;
             }
 
             .gallery-ticker-item img {
