@@ -465,6 +465,178 @@
                 font-weight: 300;
             }
 
+            /* Gallery */
+            .gallery {
+                padding: 8rem 2rem;
+                max-width: 1300px;
+                margin: 0 auto;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .gallery-item {
+                position: relative;
+                aspect-ratio: 4/3;
+                border-radius: 16px;
+                overflow: hidden;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .gallery-item::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    135deg,
+                    rgba(0, 180, 216, 0.1),
+                    rgba(255, 0, 110, 0.1)
+                );
+                opacity: 0;
+                transition: opacity 0.4s;
+                z-index: 1;
+            }
+
+            .gallery-item::after {
+                content: "🔍";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                font-size: 2rem;
+                opacity: 0;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                z-index: 2;
+            }
+
+            .gallery-item:hover {
+                border-color: var(--accent-cyan);
+                transform: translateY(-6px);
+                box-shadow: 0 20px 40px rgba(0, 180, 216, 0.15);
+            }
+
+            .gallery-item:hover::before {
+                opacity: 1;
+            }
+
+            .gallery-item:hover::after {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+            /* Lightbox */
+            .lightbox {
+                position: fixed;
+                inset: 0;
+                background: rgba(8, 8, 8, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .lightbox.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .lightbox-content {
+                max-width: 90vw;
+                max-height: 85vh;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 1px solid var(--borderlight);
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            }
+
+            .lightbox.active .lightbox-content {
+                transform: scale(1);
+            }
+
+            .lightbox-content img {
+                max-width: 100%;
+                max-height: 85vh;
+                display: block;
+            }
+
+            .lightbox-close {
+                position: absolute;
+                top: 2rem;
+                right: 2rem;
+                width: 50px;
+                height: 50px;
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 50%;
+                color: var(--text);
+                font-size: 1.5rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+            }
+
+            .lightbox-close:hover {
+                background: var(--bg-secondary);
+                border-color: var(--accent-cyan);
+                transform: rotate(90deg);
+            }
+
+            .lightbox-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50px;
+                height: 50px;
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 50%;
+                color: var(--text);
+                font-size: 1.5rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+            }
+
+            .lightbox-nav:hover {
+                background: var(--bg-secondary);
+                border-color: var(--accent-cyan);
+            }
+
+            .lightbox-prev {
+                left: 2rem;
+            }
+
+            .lightbox-next {
+                right: 2rem;
+            }
+
             /* Features */
             .features {
                 padding: 6rem 2rem;
@@ -645,6 +817,14 @@
                     width: 100%;
                     max-width: 300px;
                 }
+
+                .lightbox-prev {
+                    left: 1rem;
+                }
+
+                .lightbox-next {
+                    right: 1rem;
+                }
             }
         </style>
     </head>
@@ -668,6 +848,7 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#features">Why Us</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -774,6 +955,51 @@
                         Need a design? Our creative team transforms your ideas
                         into print-ready files that look amazing.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery" id="gallery">
+            <div class="section-header">
+                <p class="section-label">Our Work</p>
+                <h2 class="section-title">Gallery</h2>
+                <p style="color: var(--text-muted); margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    See what we can do. From stickers to merchandise, every print is crafted with care.
+                </p>
+                <a href="carousel-js.html" class="btn" style="margin-top: 2rem;">
+                    View Gallery <span class="btn-arrow">→</span>
+                </a>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" loading="lazy" />
+                </div>
+                <div class="gallery-item" onclick="location.href='carousel-js.html'">
+                    <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" loading="lazy" />
                 </div>
             </div>
         </section>
@@ -902,6 +1128,15 @@
             </a>
         </section>
 
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose">✕</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">←</button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">→</button>
+            <div class="lightbox-content">
+                <img src="" alt="Gallery image" id="lightboxImage" />
+            </div>
+        </div>
+
         <footer>
             <div class="cmyk-badge">
                 <div class="cmyk-dot"></div>
@@ -978,6 +1213,57 @@
                 requestAnimationFrame(animate);
             }
             animate();
+        </script>
+        <script>
+            const galleryItems = document.querySelectorAll(".gallery-item");
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImage = document.getElementById("lightboxImage");
+            const lightboxClose = document.getElementById("lightboxClose");
+            const lightboxPrev = document.getElementById("lightboxPrev");
+            const lightboxNext = document.getElementById("lightboxNext");
+            let currentIndex = 0;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                const item = galleryItems[index];
+                const src = item.dataset.src;
+                lightboxImage.src = src;
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                lightboxImage.src = galleryItems[currentIndex].dataset.src;
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % galleryItems.length;
+                lightboxImage.src = galleryItems[currentIndex].dataset.src;
+            }
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener("click", () => openLightbox(index));
+            });
+
+            lightboxClose.addEventListener("click", closeLightbox);
+            lightboxPrev.addEventListener("click", showPrev);
+            lightboxNext.addEventListener("click", showNext);
+            lightbox.addEventListener("click", (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (!lightbox.classList.contains("active")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowLeft") showPrev();
+                if (e.key === "ArrowRight") showNext();
+            });
         </script>
     </body>
 </html>

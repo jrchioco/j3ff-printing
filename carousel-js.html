@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>J3FF Gallery - JS Carousel</title>
+        <link rel="icon" href="logo.svg" type="image/svg+xml" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        />
+        <style>
+            :root {
+                --bg-primary: #080808;
+                --bg-secondary: #0f0f0f;
+                --bg-elevated: #161616;
+                --accent-cyan: #00b4d8;
+                --accent-magenta: #ff006e;
+                --accent-yellow: #ffbe0b;
+                --text: #f8f8f8;
+                --text-muted: #6b6b6b;
+                --border: #222;
+                --borderlight: #2a2a2a;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: "Outfit", sans-serif;
+                background: var(--bg-primary);
+                color: var(--text);
+                line-height: 1.6;
+                overflow-x: hidden;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .bg-grid {
+                position: fixed;
+                inset: 0;
+                background-image:
+                    linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+                background-size: 60px 60px;
+                opacity: 0.3;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .bg-glow {
+                position: fixed;
+                width: 600px;
+                height: 600px;
+                border-radius: 50%;
+                filter: blur(120px);
+                opacity: 0.12;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .bg-glow-1 {
+                top: -200px;
+                right: -100px;
+                background: var(--accent-cyan);
+                animation: float 15s ease-in-out infinite;
+            }
+
+            .bg-glow-2 {
+                bottom: -300px;
+                left: -200px;
+                background: var(--accent-magenta);
+                animation: float 18s ease-in-out infinite reverse;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translate(0, 0); }
+                50% { transform: translate(30px, 30px); }
+            }
+
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(8, 8, 8, 0.85);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+                z-index: 1000;
+                padding: 1.25rem 2rem;
+            }
+
+            nav {
+                max-width: 1300px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-family: "Syne", sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: 3px;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                text-decoration: none;
+                color: var(--text);
+            }
+
+            .logo img {
+                height: 40px;
+                width: auto;
+            }
+
+            .logo span {
+                color: var(--accent-cyan);
+            }
+
+            .cmyk-badge {
+                display: flex;
+                gap: 4px;
+            }
+
+            .cmyk-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+            }
+
+            .cmyk-dot:nth-child(1) { background: var(--accent-cyan); }
+            .cmyk-dot:nth-child(2) { background: var(--accent-magenta); }
+            .cmyk-dot:nth-child(3) { background: var(--accent-yellow); }
+            .cmyk-dot:nth-child(4) { background: var(--text); }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                color: var(--text-muted);
+                text-decoration: none;
+                font-weight: 400;
+                font-size: 0.9rem;
+                transition: all 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: var(--text);
+            }
+
+            .nav-links a.active {
+                color: var(--accent-cyan);
+            }
+
+            .back-link {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 50px;
+                color: var(--text-muted);
+                text-decoration: none;
+                font-size: 0.85rem;
+                transition: all 0.3s;
+            }
+
+            .back-link:hover {
+                border-color: var(--accent-cyan);
+                color: var(--accent-cyan);
+            }
+
+            .gallery-container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 7rem 2rem 2rem;
+                max-width: 1300px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .section-label {
+                font-size: 0.85rem;
+                color: var(--accent-cyan);
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+
+            .section-title {
+                font-family: "Syne", sans-serif;
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                font-weight: 600;
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .section-subtitle {
+                color: var(--text-muted);
+                text-align: center;
+                margin-bottom: 2.5rem;
+                font-size: 1rem;
+            }
+
+            .carousel-wrapper {
+                position: relative;
+                width: 100%;
+                max-width: 1000px;
+            }
+
+            .carousel-viewport {
+                position: relative;
+                overflow: hidden;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                aspect-ratio: 4/3;
+            }
+
+            .carousel-track {
+                display: flex;
+                height: 100%;
+                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .carousel-slide {
+                flex: 0 0 100%;
+                height: 100%;
+            }
+
+            .carousel-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50px;
+                height: 50px;
+                background: rgba(8, 8, 8, 0.8);
+                border: 1px solid var(--borderlight);
+                border-radius: 50%;
+                color: var(--text);
+                font-size: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                z-index: 10;
+                backdrop-filter: blur(10px);
+            }
+
+            .carousel-nav:hover {
+                background: var(--bg-elevated);
+                border-color: var(--accent-cyan);
+            }
+
+            .carousel-prev { left: -25px; }
+            .carousel-next { right: -25px; }
+
+            .carousel-counter {
+                position: absolute;
+                bottom: 1rem;
+                right: 1rem;
+                background: rgba(8, 8, 8, 0.8);
+                backdrop-filter: blur(10px);
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                font-weight: 500;
+                border: 1px solid var(--borderlight);
+                z-index: 10;
+            }
+
+            .carousel-counter .current {
+                color: var(--accent-cyan);
+                font-weight: 700;
+            }
+
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                gap: 0.75rem;
+                margin-top: 2rem;
+            }
+
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: var(--bg-elevated);
+                border: 1px solid var(--borderlight);
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .carousel-dot:hover {
+                border-color: var(--accent-cyan);
+            }
+
+            .carousel-dot.active {
+                background: var(--accent-cyan);
+                border-color: var(--accent-cyan);
+                transform: scale(1.2);
+            }
+
+            .carousel-dot.active:nth-of-type(4n+1) {
+                background: var(--accent-cyan);
+            }
+
+            .carousel-dot.active:nth-of-type(4n+2) {
+                background: var(--accent-magenta);
+            }
+
+            .carousel-dot.active:nth-of-type(4n+3) {
+                background: var(--accent-yellow);
+            }
+
+            .carousel-dot.active:nth-of-type(4n) {
+                background: var(--text);
+            }
+
+            .carousel-autoplay {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .autoplay-btn {
+                padding: 0.5rem 1.25rem;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 50px;
+                color: var(--text-muted);
+                font-size: 0.85rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .autoplay-btn:hover {
+                border-color: var(--accent-cyan);
+                color: var(--accent-cyan);
+            }
+
+            .autoplay-btn.active {
+                background: var(--accent-cyan);
+                border-color: var(--accent-cyan);
+                color: var(--bg-primary);
+            }
+
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+
+                .carousel-nav {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1rem;
+                }
+
+                .carousel-prev { left: 10px; }
+                .carousel-next { right: 10px; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg-grid"></div>
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+
+        <header>
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="logo.svg" alt="J3FF Printing" />
+                    <span>PRINTING SERVICES</span>
+                    <div class="cmyk-badge">
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                        <div class="cmyk-dot"></div>
+                    </div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="carousel-js.html" class="active">Gallery</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <a href="index.html" class="back-link">
+                    <span>←</span> Back to Home
+                </a>
+            </nav>
+        </header>
+
+        <div class="gallery-container">
+            <p class="section-label">Our Work</p>
+            <h1 class="section-title">Gallery</h1>
+            <p class="section-subtitle">Full JS Carousel with Auto-Play</p>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav carousel-prev" id="prevBtn" aria-label="Previous">
+                    ←
+                </button>
+                <div class="carousel-viewport">
+                    <div class="carousel-track" id="track">
+                        <div class="carousel-slide">
+                            <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" />
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav carousel-next" id="nextBtn" aria-label="Next">
+                    →
+                </button>
+                <div class="carousel-counter">
+                    <span class="current" id="currentSlide">1</span>
+                    <span>/</span>
+                    <span id="totalSlides">10</span>
+                </div>
+            </div>
+
+            <div class="carousel-dots" id="dots"></div>
+
+            <div class="carousel-autoplay">
+                <button class="autoplay-btn" id="autoplayBtn">
+                    <span id="autoplayIcon">▶</span>
+                    <span id="autoplayText">Auto-play</span>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            const track = document.getElementById("track");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            const dotsContainer = document.getElementById("dots");
+            const currentSlideEl = document.getElementById("currentSlide");
+            const totalSlidesEl = document.getElementById("totalSlides");
+            const autoplayBtn = document.getElementById("autoplayBtn");
+            const autoplayIcon = document.getElementById("autoplayIcon");
+            const autoplayText = document.getElementById("autoplayText");
+
+            const slides = track.querySelectorAll(".carousel-slide");
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+            let autoPlayInterval = null;
+            let isAutoPlaying = false;
+
+            totalSlidesEl.textContent = totalSlides;
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement("button");
+                dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+                dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                dot.addEventListener("click", () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll(".carousel-dot");
+
+            function goToSlide(index) {
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateUI();
+            }
+
+            function updateUI() {
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentIndex);
+                });
+                currentSlideEl.textContent = currentIndex + 1;
+            }
+
+            function showNext() {
+                goToSlide((currentIndex + 1) % totalSlides);
+            }
+
+            function showPrev() {
+                goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+            }
+
+            function toggleAutoplay() {
+                if (isAutoPlaying) {
+                    stopAutoplay();
+                } else {
+                    startAutoplay();
+                }
+            }
+
+            function startAutoplay() {
+                isAutoPlaying = true;
+                autoplayBtn.classList.add("active");
+                autoplayIcon.textContent = "⏸";
+                autoplayText.textContent = "Pause";
+                autoPlayInterval = setInterval(showNext, 4000);
+            }
+
+            function stopAutoplay() {
+                isAutoPlaying = false;
+                autoplayBtn.classList.remove("active");
+                autoplayIcon.textContent = "▶";
+                autoplayText.textContent = "Auto-play";
+                clearInterval(autoPlayInterval);
+            }
+
+            prevBtn.addEventListener("click", () => {
+                showPrev();
+                if (isAutoPlaying) {
+                    stopAutoplay();
+                    startAutoplay();
+                }
+            });
+
+            nextBtn.addEventListener("click", () => {
+                showNext();
+                if (isAutoPlaying) {
+                    stopAutoplay();
+                    startAutoplay();
+                }
+            });
+
+            autoplayBtn.addEventListener("click", toggleAutoplay);
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            track.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                if (isAutoPlaying) {
+                    stopAutoplay();
+                }
+            }, { passive: true });
+
+            track.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        showNext();
+                    } else {
+                        showPrev();
+                    }
+                }
+            }, { passive: true });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft") showPrev();
+                if (e.key === "ArrowRight") showNext();
+                if (e.key === " ") {
+                    e.preventDefault();
+                    toggleAutoplay();
+                }
+            });
+
+            let hoverPause = false;
+            track.addEventListener("mouseenter", () => {
+                if (isAutoPlaying) {
+                    hoverPause = true;
+                    stopAutoplay();
+                }
+            });
+
+            track.addEventListener("mouseleave", () => {
+                if (hoverPause) {
+                    hoverPause = false;
+                    startAutoplay();
+                }
+            });
+        </script>
+    </body>
+</html>
