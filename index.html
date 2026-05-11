@@ -872,14 +872,6 @@
 
                 .gallery-modal-prev { left: 0.5rem; }
                 .gallery-modal-next { right: 0.5rem; }
-
-                .lightbox-prev {
-                    left: 1rem;
-                }
-
-                .lightbox-next {
-                    right: 1rem;
-                }
             }
         </style>
     </head>
@@ -1023,68 +1015,7 @@
                 </p>
             </div>
             <div class="gallery-ticker-wrapper" id="galleryTickerWrapper">
-                <div class="gallery-ticker" id="galleryTicker">
-                    <div class="gallery-ticker-item" data-index="0">
-                        <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="1">
-                        <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="2">
-                        <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="3">
-                        <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="4">
-                        <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="5">
-                        <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="6">
-                        <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="7">
-                        <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="8">
-                        <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="9">
-                        <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="0">
-                        <img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="1">
-                        <img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="2">
-                        <img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="3">
-                        <img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="4">
-                        <img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="5">
-                        <img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="6">
-                        <img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="7">
-                        <img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="8">
-                        <img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" />
-                    </div>
-                    <div class="gallery-ticker-item" data-index="9">
-                        <img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" />
-                    </div>
-                </div>
+                <div class="gallery-ticker" id="galleryTicker"></div>
             </div>
         </section>
 
@@ -1218,18 +1149,7 @@
             <button class="gallery-modal-nav gallery-modal-next" id="galleryModalNext">→</button>
             <div class="gallery-modal-content">
                 <div class="gallery-modal-viewport">
-                    <div class="gallery-modal-track" id="galleryModalTrack">
-                        <div class="gallery-modal-slide"><img src="images/batch_g29.jpg" alt="J3FF Print Sample 1" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g30.jpg" alt="J3FF Print Sample 2" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g31.jpg" alt="J3FF Print Sample 3" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g32.jpg" alt="J3FF Print Sample 4" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g33.jpg" alt="J3FF Print Sample 5" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g34.jpg" alt="J3FF Print Sample 6" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g35.jpg" alt="J3FF Print Sample 7" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g36.jpg" alt="J3FF Print Sample 8" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g37.jpg" alt="J3FF Print Sample 9" /></div>
-                        <div class="gallery-modal-slide"><img src="images/batch_g38.jpg" alt="J3FF Print Sample 10" /></div>
-                    </div>
+                    <div class="gallery-modal-track" id="galleryModalTrack"></div>
                 </div>
                 <div class="gallery-modal-counter">
                     <span class="current" id="galleryModalCurrent">1</span>/<span id="galleryModalTotal">10</span>
@@ -1324,9 +1244,36 @@
             const modalCurrent = document.getElementById("galleryModalCurrent");
             const modalTotal = document.getElementById("galleryModalTotal");
             const modalDotsContainer = document.getElementById("galleryModalDots");
-            const tickerItems = document.querySelectorAll(".gallery-ticker-item");
+            const ticker = document.getElementById("galleryTicker");
+            const galleryImages = [
+                "batch_g29.jpg",
+                "batch_g30.jpg",
+                "batch_g31.jpg",
+                "batch_g32.jpg",
+                "batch_g33.jpg",
+                "batch_g34.jpg",
+                "batch_g35.jpg",
+                "batch_g36.jpg",
+                "batch_g37.jpg",
+                "batch_g38.jpg"
+            ];
+            const totalImages = galleryImages.length;
             let modalIndex = 0;
-            const totalImages = 10;
+
+            galleryImages.forEach((img, i) => {
+                const tickerItem = document.createElement("div");
+                tickerItem.className = "gallery-ticker-item";
+                tickerItem.dataset.index = i;
+                tickerItem.innerHTML = `<img src="images/${img}" alt="J3FF Print Sample ${i + 1}" />`;
+                ticker.appendChild(tickerItem);
+            });
+
+            galleryImages.forEach((img) => {
+                const slide = document.createElement("div");
+                slide.className = "gallery-modal-slide";
+                slide.innerHTML = `<img src="images/${img}" alt="J3FF Print Sample" />`;
+                modalTrack.appendChild(slide);
+            });
 
             modalTotal.textContent = totalImages;
 
@@ -1337,6 +1284,7 @@
                 modalDotsContainer.appendChild(dot);
             }
             const dots = modalDotsContainer.querySelectorAll(".gallery-modal-dot");
+            const tickerItems = document.querySelectorAll(".gallery-ticker-item");
 
             function goToModalSlide(index) {
                 modalIndex = index;
