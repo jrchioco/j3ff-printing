@@ -1,1195 +1,1893 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>J3FF Printing Services</title>
-        <link rel="icon" href="logo.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="logo.svg" />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
-        />
-        <style>
-            :root {
-                --bg-primary: #080808;
-                --bg-secondary: #0f0f0f;
-                --bg-elevated: #161616;
-                --accent-cyan: #00b4d8;
-                --accent-magenta: #ff006e;
-                --accent-yellow: #ffbe0b;
-                --text: #f8f8f8;
-                --text-muted: #6b6b6b;
-                --text-dim: #3d3d3d;
-                --border: #222;
-                --borderlight: #2a2a2a;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J3FF Printing Services | Premium Prints Delivered Perfect</title>
+    <meta name="description" content="J3FF Printing Services - family-run printing business in Bulacan, Philippines. Document printing, stickers, custom merchandise, bulk orders & design services. We catch issues before they print, not after you've paid." />
+    <meta name="keywords" content="printing services bulacan, document printing, sticker printing, custom merchandise, bulk printing, san jose del monte, family business printing" />
+    <meta name="author" content="J3FF Printing Services" />
+    <link rel="icon" href="logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="logo.svg" />
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+    <meta property="og:title" content="J3FF Printing Services | Premium Prints Delivered Perfect" />
+    <meta property="og:description" content="Family-run printing services in Bulacan. From business materials to personal projects — bring your vision to life with vibrant, professional results." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="logo.svg" />
+    <meta property="og:locale" content="en_PH" />
 
-            html {
-                scroll-behavior: smooth;
-            }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="J3FF Printing Services" />
+    <meta name="twitter:description" content="Premium printing services in Bulacan, Philippines." />
 
-            body {
-                font-family: "Outfit", sans-serif;
-                background: var(--bg-primary);
-                color: var(--text);
-                line-height: 1.6;
-                overflow-x: hidden;
-            }
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "J3FF Printing Services",
+        "image": "logo.svg",
+        "email": "jtc20007@gmail.com",
+        "telephone": "+63-919-356-0058",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Blk. 7, Gumaoc Central",
+            "addressLocality": "City of San Jose Del Monte",
+            "addressRegion": "Bulacan",
+            "addressCountry": "PH"
+        },
+        "url": "https://j3ffprinting.com",
+        "priceRange": "$$",
+        "description": "Family-run printing services in Bulacan, Philippines.",
+        "sameAs": ["https://www.facebook.com/J3FFPRINTING"]
+    }
+    </script>
 
-            /* Background effects */
-            .bg-grid {
-                position: fixed;
-                inset: 0;
-                background-image:
-                    linear-gradient(var(--border) 1px, transparent 1px),
-                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-                background-size: 60px 60px;
-                opacity: 0.3;
-                pointer-events: none;
-                z-index: -1;
-            }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" />
 
-            .bg-glow {
-                position: fixed;
-                width: 600px;
-                height: 600px;
-                border-radius: 50%;
-                filter: blur(120px);
-                opacity: 0.15;
-                pointer-events: none;
-                z-index: -1;
-            }
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #0f0f0f;
+            --bg-elevated: #161616;
+            --accent-cyan: #00b4d8;
+            --accent-magenta: #ff006e;
+            --accent-yellow: #ffbe0b;
+            --text: #f8f8f8;
+            --text-muted: #6b6b6b;
+            --text-dim: #3d3d3d;
+            --border: #222;
+            --borderlight: #2a2a2a;
+            --overlay: rgba(8, 8, 8, 0.6);
+            --nav-bg: rgba(8, 8, 8, 0.85);
+            color-scheme: dark;
+        }
 
-            .bg-glow-1 {
-                top: -200px;
-                right: -100px;
-                background: var(--accent-cyan);
-                animation: float 15s ease-in-out infinite;
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            .bg-glow-2 {
-                bottom: -300px;
-                left: -200px;
-                background: var(--accent-magenta);
-                animation: float 18s ease-in-out infinite reverse;
-            }
+        html {
+            scroll-behavior: smooth;
+        }
 
-            @keyframes float {
-                0%,
-                100% {
-                    transform: translate(0, 0);
-                }
-                50% {
-                    transform: translate(30px, 30px);
-                }
-            }
+        body {
+            font-family: "Outfit", sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-            /* Header */
-            header {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: rgba(8, 8, 8, 0.85);
-                backdrop-filter: blur(20px);
-                border-bottom: 1px solid var(--border);
-                z-index: 1000;
-                padding: 1.25rem 2rem;
-            }
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            transition: background-image 0.3s;
+        }
 
-            nav {
-                max-width: 1300px;
-                margin: 0 auto;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-            .logo {
-                font-family: "Syne", sans-serif;
-                font-size: 1.4rem;
-                font-weight: 700;
-                letter-spacing: 3px;
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-            }
+        .bg-glow-1 {
+            top: -200px;
+            right: -100px;
+            background: var(--accent-cyan);
+            animation: float 15s ease-in-out infinite;
+        }
 
-            .logo img {
-                height: 40px;
-                width: auto;
-            }
+        .bg-glow-2 {
+            bottom: -300px;
+            left: -200px;
+            background: var(--accent-magenta);
+            animation: float 18s ease-in-out infinite reverse;
+        }
 
-            .logo span {
-                color: var(--accent-cyan);
-            }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
 
-            .cmyk-badge {
-                display: flex;
-                gap: 4px;
-            }
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-            .cmyk-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-            }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            transition: background 0.3s, border-color 0.3s;
+        }
 
-            .cmyk-dot:nth-child(1) {
-                background: var(--accent-cyan);
-            }
-            .cmyk-dot:nth-child(2) {
-                background: var(--accent-magenta);
-            }
-            .cmyk-dot:nth-child(3) {
-                background: var(--accent-yellow);
-            }
-            .cmyk-dot:nth-child(4) {
-                background: var(--text);
-            }
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            .nav-links {
-                display: flex;
-                gap: 2.5rem;
-                list-style: none;
-            }
+        .logo {
+            font-family: "Syne", sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-            .nav-links a {
-                color: var(--text-muted);
-                text-decoration: none;
-                font-weight: 400;
-                font-size: 0.95rem;
-                transition: all 0.3s;
-                position: relative;
-            }
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
 
-            .nav-links a::after {
-                content: "";
-                position: absolute;
-                bottom: -4px;
-                left: 0;
-                width: 0;
-                height: 1px;
-                background: var(--accent-cyan);
-                transition: width 0.3s;
-            }
+        .logo span {
+            color: var(--accent-cyan);
+        }
 
-            .nav-links a:hover {
-                color: var(--text);
-            }
+        .cmyk-badge {
+            display: flex;
+            gap: 4px;
+        }
 
-            .nav-links a:hover::after {
-                width: 100%;
-            }
+        .cmyk-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
 
-            /* Hero */
-            .hero {
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 8rem 2rem 6rem;
-            }
+        .cmyk-dot:nth-child(1) { background: var(--accent-cyan); }
+        .cmyk-dot:nth-child(2) { background: var(--accent-magenta); }
+        .cmyk-dot:nth-child(3) { background: var(--accent-yellow); }
+        .cmyk-dot:nth-child(4) { background: var(--text); }
 
-            .hero-content {
-                max-width: 900px;
-            }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
 
-            .hero-label {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.75rem;
-                padding: 0.5rem 1rem;
-                background: var(--bg-elevated);
-                border: 1px solid var(--borderlight);
-                border-radius: 50px;
-                font-size: 0.85rem;
-                color: var(--text-muted);
-                margin-bottom: 2rem;
-                animation: fade-in-up 0.8s ease-out;
-            }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+        }
 
-            @keyframes fade-in-up {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .hamburger:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--overlay);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            z-index: 1001;
+            padding: 6rem 2rem 2rem;
+            transition: right 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--borderlight);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fade-in-up 0.8s ease-out;
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: "Syne", sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            animation: fade-in-up 0.8s ease-out 0.15s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            animation: fade-in-up 0.8s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan), #0096c7);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            animation: fade-in-up 0.8s ease-out 0.45s both;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .services {
+            padding: 8rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: "Syne", sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            margin-top: 1rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta), var(--accent-yellow));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.04), rgba(255, 0, 110, 0.04));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover {
+            background: var(--bg-elevated);
+            border-color: var(--borderlight);
+            transform: translateY(-6px) scale(1.01);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover::after { opacity: 1; }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(3deg);
+            border-color: var(--accent-cyan);
+        }
+
+        .service-number {
+            font-family: "Syne", sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-number {
+            color: var(--accent-cyan);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card .learn-more {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .learn-more {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .pricing::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--borderlight), transparent);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-primary);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent-cyan);
+            position: relative;
+        }
+
+        .pricing-card.popular::before {
+            content: "Most Requested";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .price {
+            font-family: "Syne", sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-card .price-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .pricing-card .btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+        }
+
+        .gallery {
+            padding: 8rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .gallery-ticker-wrapper {
+            overflow: hidden;
+            width: 100%;
+            margin-top: 3rem;
+            padding: 3rem 0;
+            cursor: grab;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .gallery-ticker-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .gallery-ticker {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: max-content;
+        }
+
+        .gallery-ticker-wrapper:hover .gallery-ticker .gallery-ticker-item:hover {
+            transform: scale(1.15);
+            z-index: 10;
+        }
+
+        .gallery-ticker.dragging .gallery-ticker-item:hover {
+            transform: none;
+        }
+
+        .gallery-ticker-item {
+            flex-shrink: 0;
+            width: 300px;
+            height: 225px;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .gallery-ticker-item:hover {
+            transform: scale(1.15);
+            z-index: 10;
+        }
+
+        .gallery-ticker-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .testimonials {
+            padding: 8rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--borderlight);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card .stars {
+            color: var(--accent-yellow);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card blockquote {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .testimonial-card .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-card .author-info strong {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card .author-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-elevated);
+            border-color: var(--borderlight);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+
+        .feature-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .about {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .about::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--borderlight), transparent);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .contact {
+            padding: 8rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+            min-width: 200px;
+            flex: 1;
+            max-width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        .contact-card:hover {
+            background: var(--bg-elevated);
+            border-color: var(--borderlight);
+            transform: translateY(-4px);
+        }
+
+        .contact-card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover .contact-card-icon {
+            transform: scale(1.2);
+        }
+
+        .contact-card h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            margin-top: 3rem;
+            text-align: left;
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-form h3 {
+            font-family: "Syne", sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form .form-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: "Outfit", sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--bg-primary);
+        }
+
+        .form-group input[type="file"] {
+            padding: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .form-group input[type="file"]::file-selector-button {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            color: var(--text);
+            cursor: pointer;
+            margin-right: 0.75rem;
+            font-family: "Outfit", sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input[type="file"]::file-selector-button:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .form-submit {
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .facebook-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .facebook-link:hover {
+            background: var(--bg-elevated);
+            border-color: #1877f2;
+            color: #1877f2;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer .cmyk-badge {
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .gallery-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .gallery-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            width: 95vw;
+            max-width: 1300px;
+            max-height: 90vh;
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-modal.active .gallery-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .gallery-modal-viewport {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--bg-primary);
+            max-height: 82vh;
+        }
+
+        .gallery-modal-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-modal-slide {
+            flex: 0 0 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-in;
+        }
+
+        .gallery-modal-slide img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-modal-slide.zoomed {
+            cursor: zoom-out;
+        }
+
+        .gallery-modal-slide.zoomed img {
+            transform: scale(2);
+        }
+
+        .gallery-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s;
+            z-index: 10;
+            opacity: 0.7;
+        }
+
+        .gallery-modal-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: var(--accent-cyan);
+            opacity: 1;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+        }
+
+        .gallery-modal-prev { left: 1.5rem; }
+        .gallery-modal-next { right: 1.5rem; }
+
+        .gallery-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            opacity: 0.7;
+        }
+
+        .gallery-modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: var(--accent-magenta);
+            opacity: 1;
+            transform: rotate(90deg);
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.2);
+        }
+
+        .gallery-modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+        }
+
+        .gallery-modal-counter {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .gallery-modal-counter .current {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .gallery-modal-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .gallery-modal-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-dim);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .gallery-modal-dot:hover {
+            background: var(--text-muted);
+        }
+
+        .gallery-modal-dot.active {
+            background: var(--accent-cyan);
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        .service-modal {
+            position: fixed;
+            inset: 0;
+            background: var(--overlay);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 2rem;
+        }
+
+        .service-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .service-modal-content {
+            position: relative;
+            width: 90vw;
+            max-width: 600px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--borderlight);
+            padding: 2.5rem;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .service-modal.active .service-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .service-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(8, 8, 8, 0.8);
+            border: 1px solid var(--borderlight);
+            border-radius: 50%;
+            color: var(--text);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .service-modal-close:hover {
+            background: var(--bg-elevated);
+            border-color: var(--accent-magenta);
+            transform: rotate(90deg);
+        }
+
+        .service-modal-content .service-modal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-modal-content h2 {
+            font-family: "Syne", sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .service-modal-content .service-modal-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-modal-content .service-modal-details {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-modal-content .service-modal-details li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-modal-content .service-modal-details li:last-child {
+            border-bottom: none;
+        }
+
+        .service-modal-content .service-modal-details li::before {
+            content: "→";
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        @keyframes fade-in-up-scroll {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+
+            .hamburger { display: flex; }
+
+            .mobile-overlay { display: block; }
 
             .hero h1 {
-                font-family: "Syne", sans-serif;
-                font-size: clamp(3rem, 8vw, 6.5rem);
-                font-weight: 700;
-                margin-bottom: 1.5rem;
-                line-height: 1.05;
-                letter-spacing: -2px;
-                animation: fade-in-up 0.8s ease-out 0.15s both;
-            }
-
-            .hero h1 .gradient-text {
-                background: linear-gradient(
-                    135deg,
-                    var(--accent-cyan),
-                    var(--accent-magenta),
-                    var(--accent-yellow)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-                color: var(--text-muted);
-                margin-bottom: 2.5rem;
-                max-width: 550px;
-                margin-left: auto;
-                margin-right: auto;
-                font-weight: 300;
-                animation: fade-in-up 0.8s ease-out 0.3s both;
-            }
-
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.75rem;
-                padding: 1rem 2.5rem;
-                background: linear-gradient(
-                    135deg,
-                    var(--accent-cyan),
-                    #0096c7
-                );
-                color: var(--bg-primary);
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 1rem;
-                border-radius: 50px;
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                border: none;
-                animation: fade-in-up 0.8s ease-out 0.45s both;
-            }
-
-            .btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 20px 40px rgba(0, 180, 216, 0.3);
-            }
-
-            .btn-arrow {
-                transition: transform 0.3s;
-            }
-
-            .btn:hover .btn-arrow {
-                transform: translateX(4px);
-            }
-
-            /* Services */
-            .services {
-                padding: 8rem 2rem;
-                max-width: 1300px;
-                margin: 0 auto;
-            }
-
-            .section-header {
-                text-align: center;
-                margin-bottom: 4rem;
-            }
-
-            .section-label {
-                font-size: 0.85rem;
-                color: var(--accent-cyan);
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                margin-bottom: 1rem;
-            }
-
-            .section-title {
-                font-family: "Syne", sans-serif;
-                font-size: clamp(2rem, 5vw, 3.5rem);
-                font-weight: 600;
-            }
-
-            .services-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1.5rem;
-            }
-
-            .service-card {
-                background: var(--bg-secondary);
-                padding: 2.5rem;
-                border-radius: 16px;
-                border: 1px solid var(--border);
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .service-card::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 2px;
-                background: linear-gradient(
-                    90deg,
-                    var(--accent-cyan),
-                    var(--accent-magenta),
-                    var(--accent-yellow)
-                );
-                opacity: 0;
-                transition: opacity 0.4s;
-            }
-
-            .service-card::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(
-                    135deg,
-                    rgba(0, 180, 216, 0.04),
-                    rgba(255, 0, 110, 0.04)
-                );
-                opacity: 0;
-                transition: opacity 0.4s;
-            }
-
-            .service-card:hover {
-                background: var(--bg-elevated);
-                border-color: var(--borderlight);
-                transform: translateY(-6px) scale(1.01);
-            }
-
-            .service-card:hover::before {
-                opacity: 1;
-            }
-
-            .service-card:hover::after {
-                opacity: 1;
-            }
-
-            .service-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                margin-bottom: 1.5rem;
-                position: relative;
-            }
-
-            .service-icon {
-                width: 50px;
-                height: 50px;
-                background: var(--bg-primary);
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-                border: 1px solid var(--border);
-                transition: all 0.3s;
-            }
-
-            .service-card:hover .service-icon {
-                transform: scale(1.1) rotate(3deg);
-                border-color: var(--accent-cyan);
-            }
-
-            .service-number {
-                font-family: "Syne", sans-serif;
                 font-size: 2.5rem;
-                font-weight: 700;
-                color: var(--text-dim);
-                transition: all 0.3s;
+                letter-spacing: -1px;
             }
 
-            .service-card:hover .service-number {
-                color: var(--accent-cyan);
-            }
+            .services-grid { grid-template-columns: 1fr; }
 
-            .service-card h3 {
-                font-size: 1.3rem;
-                font-weight: 600;
-                margin-bottom: 0.75rem;
-            }
+            .pricing-grid { grid-template-columns: 1fr; }
 
-            .service-card p {
-                color: var(--text-muted);
-                font-size: 0.95rem;
-                line-height: 1.7;
-            }
+            .features-grid { grid-template-columns: 1fr 1fr; }
 
-            /* About */
-            .about {
-                padding: 8rem 2rem;
-                background: var(--bg-secondary);
-                position: relative;
-            }
+            .testimonials-grid { grid-template-columns: 1fr; }
 
-            .about::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 1px;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    var(--borderlight),
-                    transparent
-                );
-            }
+            .contact-cards { flex-direction: column; align-items: center; }
 
-            .about-content {
-                max-width: 800px;
-                margin: 0 auto;
-                text-align: center;
-            }
+            .contact-card { width: 100%; max-width: 300px; }
 
-            .about p {
-                color: var(--text-muted);
-                font-size: 1.15rem;
-                line-height: 1.9;
-                font-weight: 300;
-            }
+            .form-row { grid-template-columns: 1fr; }
 
-            /* Gallery */
-            .gallery {
-                padding: 8rem 2rem;
-                max-width: 1300px;
-                margin: 0 auto;
-            }
+            .contact-form { padding: 1.5rem; }
 
-            .gallery-ticker-wrapper {
-                overflow: hidden;
-                width: 100%;
-                margin-top: 3rem;
-                padding: 3rem 0;
-                cursor: grab;
-                user-select: none;
-            }
-
-            .gallery-ticker-wrapper:active {
-                cursor: grabbing;
-            }
-
-            .gallery-ticker {
-                display: flex;
-                align-items: center;
-                gap: 1.5rem;
-                width: max-content;
-            }
-
-            .gallery-ticker-wrapper:hover .gallery-ticker .gallery-ticker-item:hover {
-                transform: scale(1.15);
-                z-index: 10;
-            }
-
-            .gallery-ticker.dragging .gallery-ticker-item:hover {
-                transform: none;
-            }
-
-            .gallery-ticker-item {
-                flex-shrink: 0;
-                width: 300px;
-                border-radius: 12px;
-                overflow: hidden;
-                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                position: relative;
-            }
-
-            .gallery-ticker-item:hover {
-                transform: scale(1.15);
-                z-index: 10;
-            }
-
-            .gallery-ticker-item img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-
-            .gallery-modal {
-                position: fixed;
-                inset: 0;
-                background: rgba(8, 8, 8, 0.6);
-                backdrop-filter: blur(8px);
-                z-index: 2000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
-            }
-
-            .gallery-modal.active {
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .gallery-modal-content {
-                position: relative;
-                width: 90vw;
-                max-width: 1000px;
-                background: var(--bg-secondary);
-                border-radius: 16px;
-                border: 1px solid var(--borderlight);
-                overflow: hidden;
-                transform: scale(0.9);
-                transition: transform 0.3s ease;
-            }
-
-            .gallery-modal.active .gallery-modal-content {
-                transform: scale(1);
-            }
-
-            .gallery-modal-viewport {
-                position: relative;
-                overflow: hidden;
-                aspect-ratio: 4/3;
-            }
-
-            .gallery-modal-track {
-                display: flex;
-                height: 100%;
-                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
-
-            .gallery-modal-slide {
-                flex: 0 0 100%;
-                height: 100%;
-            }
-
-            .gallery-modal-slide img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
+            .gallery-ticker-item { width: 200px; height: 150px; }
 
             .gallery-modal-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 50px;
-                height: 50px;
-                background: rgba(8, 8, 8, 0.8);
-                border: 1px solid var(--borderlight);
-                border-radius: 50%;
-                color: var(--text);
-                font-size: 1.25rem;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s;
-                backdrop-filter: blur(10px);
-            }
-
-            .gallery-modal-nav:hover {
-                background: var(--bg-elevated);
-                border-color: var(--accent-cyan);
-            }
-
-            .gallery-modal-prev { left: 1rem; }
-            .gallery-modal-next { right: 1rem; }
-
-            .gallery-modal-close {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                width: 40px;
-                height: 40px;
-                background: rgba(8, 8, 8, 0.8);
-                border: 1px solid var(--borderlight);
-                border-radius: 50%;
-                color: var(--text);
-                font-size: 1rem;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s;
-                backdrop-filter: blur(10px);
-                z-index: 10;
-            }
-
-            .gallery-modal-close:hover {
-                background: var(--bg-elevated);
-                border-color: var(--accent-magenta);
-                transform: rotate(90deg);
-            }
-
-            .gallery-modal-counter {
-                position: absolute;
-                bottom: 1rem;
-                right: 1rem;
-                background: rgba(8, 8, 8, 0.8);
-                backdrop-filter: blur(10px);
-                padding: 0.5rem 1rem;
-                border-radius: 50px;
-                font-size: 0.85rem;
-                color: var(--text-muted);
-                font-weight: 500;
-                border: 1px solid var(--borderlight);
-                z-index: 10;
-            }
-
-            .gallery-modal-counter .current {
-                color: var(--accent-cyan);
-                font-weight: 700;
-            }
-
-            .gallery-modal-dots {
-                display: flex;
-                justify-content: center;
-                gap: 0.5rem;
-                padding: 1.5rem;
-                background: var(--bg-secondary);
-            }
-
-            .gallery-modal-dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: var(--bg-elevated);
-                border: 1px solid var(--borderlight);
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-
-            .gallery-modal-dot:hover {
-                border-color: var(--accent-cyan);
-            }
-
-            .gallery-modal-dot.active {
-                background: var(--accent-cyan);
-                border-color: var(--accent-cyan);
-                transform: scale(1.2);
-            }
-
-            /* Features */
-            .features {
-                padding: 6rem 2rem;
-                max-width: 1300px;
-                margin: 0 auto;
-            }
-
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 1.25rem;
-            }
-
-            .feature-card {
-                background: var(--bg-secondary);
-                padding: 2rem;
-                border-radius: 16px;
-                border: 1px solid var(--border);
-                text-align: center;
-                transition: all 0.3s;
-            }
-
-            .feature-card:hover {
-                background: var(--bg-elevated);
-                border-color: var(--borderlight);
-                transform: translateY(-4px);
-            }
-
-            .feature-icon {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-                transition: transform 0.3s;
-            }
-
-            .feature-card:hover .feature-icon {
-                transform: scale(1.2);
-            }
-
-            .feature-card h4 {
-                font-size: 1.1rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-            }
-
-            .feature-card p {
-                color: var(--text-muted);
+                width: 36px;
+                height: 36px;
                 font-size: 0.9rem;
             }
 
-            /* Contact */
-            .contact {
-                padding: 8rem 2rem;
-                max-width: 600px;
-                margin: 0 auto;
-                text-align: center;
+            .gallery-modal-prev { left: 0.75rem; }
+            .gallery-modal-next { right: 0.75rem; }
+
+            .gallery-modal-footer {
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
 
-            .contact-cards {
-                display: flex;
-                justify-content: center;
-                gap: 1.25rem;
-                margin-top: 3rem;
-            }
+            .bg-canvas { display: none; }
+            .bg-glow { animation: none; }
+            .gallery-ticker { animation: none; }
+            .fade-in-up { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
 
-            .contact-card {
-                background: var(--bg-secondary);
-                padding: 2.5rem 2rem;
-                border-radius: 16px;
-                border: 1px solid var(--border);
-                text-align: center;
-                transition: all 0.3s;
-                min-width: 250px;
-                height: 180px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                text-decoration: none;
-                cursor: pointer;
-                color: inherit;
-            }
-
-            .contact-card:hover {
-                background: var(--bg-elevated);
-                border-color: var(--borderlight);
-                transform: translateY(-4px);
-            }
-
-            .contact-card-icon {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-                transition: transform 0.3s;
-            }
-
-            .contact-card:hover .contact-card-icon {
-                transform: scale(1.2);
-            }
-
-            .contact-card h4 {
-                font-size: 0.85rem;
-                color: var(--text-muted);
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                margin-bottom: 0.5rem;
-            }
-
-            /* Facebook Page Link */
-            .facebook-link {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-top: 2rem;
-                padding: 0.75rem 1.5rem;
-                background: var(--bg-secondary);
-                border: 1px solid var(--border);
-                border-radius: 50px;
-                color: var(--text-muted);
-                font-size: 0.9rem;
-                transition: all 0.3s;
-            }
-
-            .facebook-link:hover {
-                background: var(--bg-elevated);
-                border-color: #1877f2;
-                color: #1877f2;
-            }
-
-            /* Footer */
-            footer {
-                padding: 3rem 2rem;
-                text-align: center;
-                border-top: 1px solid var(--border);
-            }
-
-            footer .cmyk-badge {
-                justify-content: center;
-                margin-bottom: 1rem;
-            }
-
-            footer p {
-                color: var(--text-dim);
-                font-size: 0.9rem;
-            }
-
-            /* Canvas for particles */
-            .bg-canvas {
-                position: fixed;
-                top: 0;
-                left: 0;
-                pointer-events: none;
-                z-index: 0;
-            }
-
-            /* Mobile */
-            @media (max-width: 768px) {
-                .nav-links {
-                    display: none;
-                }
-
-                .hero h1 {
-                    font-size: 2.5rem;
-                    letter-spacing: -1px;
-                }
-
-                .services-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .features-grid {
-                    grid-template-columns: 1fr 1fr;
-                }
-
-                .contact-cards {
-                    flex-direction: column;
-                    align-items: center;
-                }
-
-                .contact-card {
-                    width: 100%;
-                    max-width: 300px;
-                }
-
-                .gallery-ticker-item {
-                    width: 200px;
-                    height: 150px;
-                }
-
-                .gallery-modal-nav {
-                    width: 40px;
-                    height: 40px;
-                    font-size: 1rem;
-                }
-
-                .gallery-modal-prev { left: 0.5rem; }
-                .gallery-modal-next { right: 0.5rem; }
-            }
-        </style>
-    </head>
-    <body>
-        <canvas class="bg-canvas" id="bgCanvas"></canvas>
-        <div class="bg-grid"></div>
-        <div class="bg-glow bg-glow-1"></div>
-        <div class="bg-glow bg-glow-2"></div>
-
-        <header>
-            <nav>
-                <div class="logo">
-                    <img src="logo.svg" alt="J3FF Printing" />
-                    <span>PRINTING SERVICES</span>
-                    <div class="cmyk-badge">
-                        <div class="cmyk-dot"></div>
-                        <div class="cmyk-dot"></div>
-                        <div class="cmyk-dot"></div>
-                        <div class="cmyk-dot"></div>
-                    </div>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#features">Why Us</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-label">
-                    <div class="cmyk-badge">
-                        <div class="cmyk-dot"></div>
-                        <div class="cmyk-dot"></div>
-                        <div class="cmyk-dot"></div>
-                        <div class="cmyk-dot"></div>
-                    </div>
-                    Professional Printing Services
-                </div>
-                <h1>
-                    <span class="gradient-text">Premium Prints</span
-                    ><br />Delivered Perfect
-                </h1>
-                <p>
-                    Quality printing solutions for every need. From business
-                    materials to personal projects. bring your vision to life
-                    with vibrant, professional results.
-                </p>
-                <a href="#contact" class="btn"
-                    >Get a Quote <span class="btn-arrow">→</span></a
-                >
-            </div>
-        </section>
-
-        <section class="services" id="services">
-            <div class="section-header">
-                <p class="section-label">What We Offer</p>
-                <h2 class="section-title">Our Services</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">📄</div>
-                        <span class="service-number">01</span>
-                    </div>
-                    <h3>Document Printing</h3>
-                    <p>
-                        High-resolution black & white and color printing for
-                        documents, reports, presentations, and manuals of any
-                        size.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">🎨</div>
-                        <span class="service-number">02</span>
-                    </div>
-                    <h3>Stickers & Marketing</h3>
-                    <p>
-                        ✨ Custom stickers, labels, brochures, flyers, posters
-                        and banners that make your brand memorable and
-                        professional.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">📔</div>
-                        <span class="service-number">03</span>
-                    </div>
-                    <h3>Bindery & Finishing</h3>
-                    <p>
-                        Professional binding, lamination, folding, scoring, and
-                        custom finishing for a polished final product.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">👕</div>
-                        <span class="service-number">04</span>
-                    </div>
-                    <h3>Custom Merchandise</h3>
-                    <p>
-                        Vinyl printing, heat transfers, and custom printed
-                        merchandise for events, teams, or your business.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">📦</div>
-                        <span class="service-number">05</span>
-                    </div>
-                    <h3>Bulk Orders</h3>
-                    <p>
-                        Volume discounts with fast turnaround. Whether you need
-                        100 or 10,000 copies, we deliver on time.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <div class="service-icon">✨</div>
-                        <span class="service-number">06</span>
-                    </div>
-                    <h3>Design Services</h3>
-                    <p>
-                        Need a design? Our creative team transforms your ideas
-                        into print-ready files that look amazing.
-                    </p>
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <div class="logo">
+                <img src="logo.svg" alt="J3FF Printing Services Logo" />
+                <span>PRINTING SERVICES</span>
+                <div class="cmyk-badge" aria-hidden="true">
+                    <div class="cmyk-dot"></div>
+                    <div class="cmyk-dot"></div>
+                    <div class="cmyk-dot"></div>
+                    <div class="cmyk-dot"></div>
                 </div>
             </div>
-        </section>
+            <div class="nav-actions">
+                <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                <li role="none"><a href="#pricing" role="menuitem">Pricing</a></li>
+                <li role="none"><a href="#gallery" role="menuitem">Gallery</a></li>
+                <li role="none"><a href="#testimonials" role="menuitem">Testimonials</a></li>
+                <li role="none"><a href="#features" role="menuitem">Why Us</a></li>
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <section class="gallery" id="gallery">
-            <div class="section-header">
-                <p class="section-label">Our Work</p>
-                <h2 class="section-title">Gallery</h2>
-                <p style="color: var(--text-muted); margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-                    See what we can do. From stickers to merchandise, every print is crafted with care.
-                </p>
-            </div>
-            <div class="gallery-ticker-wrapper" id="galleryTickerWrapper">
-                <div class="gallery-ticker" id="galleryTicker"></div>
-            </div>
-        </section>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="#gallery" class="mobile-nav-link">Gallery</a>
+        <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+        <a href="#features" class="mobile-nav-link">Why Us</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
 
-        <section class="features" id="features">
-            <div class="section-header">
-                <p class="section-label">Why Choose Us</p>
-                <h2 class="section-title">The J3FF Difference</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">✓</div>
-                    <h4>
-                        <span style="color: var(--accent-cyan)"
-                            >We'll catch it first</span
-                        >
-                    </h4>
-                    <p>
-                        Low-res file? Wrong bleed margin? We catch it before it
-                        prints not after you've paid.
-                    </p>
+    <section class="hero" id="hero" aria-label="Hero">
+        <div class="hero-content">
+            <div class="hero-label">
+                <div class="cmyk-badge" aria-hidden="true">
+                    <div class="cmyk-dot"></div>
+                    <div class="cmyk-dot"></div>
+                    <div class="cmyk-dot"></div>
+                    <div class="cmyk-dot"></div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✓</div>
-                    <h4>
-                        <span style="color: var(--accent-magenta)"
-                            >You talk to the person doing the work</span
-                        >
-                    </h4>
-                    <p>
-                        No middlemen, no lost messages. Ask us anything, get a
-                        straight answer.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✓</div>
-                    <h4>
-                        <span style="color: var(--accent-yellow)"
-                            >We've been there</span
-                        >
-                    </h4>
-                    <p>
-                        We understand tight budgets and fast deadlines. We'll
-                        work with you, not around you.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🙋</div>
-                    <h4>Walk-ins Welcome</h4>
-                    <p>Visit us anytime</p>
-                </div>
+                Professional Printing Services
             </div>
-        </section>
-
-        <section class="about" id="about">
-            <div class="about-content">
-                <p class="section-label">Who We Are</p>
-                <h2 class="section-title" style="margin-bottom: 2rem">
-                    A Family Behind Every Print
-                </h2>
-                <p>
-                    J3FF Printing Services isn't a franchise or a copy shop
-                    chain. It's us.
-                    <span style="color: #c4c4c4; font-weight: 600"
-                        >A family that has spent years getting this right</span
-                    >, learning which paper holds color best, which finishes
-                    last, and how to treat every client like a repeat customer
-                    from day one.
-                </p>
-                <p style="margin-top: 1rem">
-                    Whether you're printing Stickers for your brand, Flyers for
-                    a local event, Business Cards that need to impress, we
-                    handle your job like our name is on it. Because it is.
-                </p>
-            </div>
-        </section>
-
-        <section class="contact" id="contact">
-            <div class="section-header">
-                <p class="section-label">Let's Talk</p>
-                <h2 class="section-title">Get In Touch</h2>
-            </div>
-            <div class="contact-cards">
-                <a
-                    href="mailto:jtc20007@gmail.com?subject=Inquiry"
-                    class="contact-card"
-                >
-                    <div class="contact-card-icon">📧</div>
-                    <h4>Email</h4>
-                    <p>jtc20007@gmail.com</p>
-                </a>
-                <a href="tel:+639193560058" class="contact-card">
-                    <div class="contact-card-icon">📱</div>
-                    <h4>Phone</h4>
-                    <p>+63 919-356-0058</p>
-                </a>
-                <a
-                    href="https://www.google.com/maps/place/BLK+7+gumaoc+central/@14.7999213,121.0652183,3a,75y,340.84h,84.81t/data=!3m7!1e1!3m5!1sMy3d3x3KeRAJbo4zQr_5PQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D5.189999999999998%26panoid%3DMy3d3x3KeRAJbo4zQr_5PQ%26yaw%3D340.84!7i16384!8i8192!4m7!3m6!1s0x3397af4fb8442e39:0x5c1a1c67f7da0e22!8m2!3d14.8016476!4d121.0642384!10e5!16s%2Fg%2F11p_5v7htw?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
-                    target="_blank"
-                    class="contact-card"
-                >
-                    <div class="contact-card-icon">📍</div>
-                    <h4>Location</h4>
-                    <p>
-                        Blk. 7, Gumaoc Central<br />City of San Jose Del Monte,
-                        Bulacan.
-                    </p>
-                </a>
-            </div>
-            <a
-                href="https://www.facebook.com/J3FFPRINTING"
-                target="_blank"
-                class="facebook-link"
-            >
-                <svg
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.955 10.125 11.854v-8.385H7.078v-3.47h3.047V9.283c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.028 24 18.062 24 12.073z"
-                    />
-                </svg>
-                Visit Our Facebook Page
+            <h1>
+                <span class="gradient-text">Premium Prints</span><br />Delivered Perfect
+            </h1>
+            <p>
+                Quality printing solutions for every need. From business
+                materials to personal projects. Bring your vision to life
+                with vibrant, professional results.
+            </p>
+            <a href="#contact" class="btn" aria-label="Get a quote">
+                Get a Quote <span class="btn-arrow" aria-hidden="true">→</span>
             </a>
-        </section>
+        </div>
+    </section>
 
-        <div class="gallery-modal" id="galleryModal">
-            <button class="gallery-modal-close" id="galleryModalClose">✕</button>
-            <button class="gallery-modal-nav gallery-modal-prev" id="galleryModalPrev">←</button>
-            <button class="gallery-modal-nav gallery-modal-next" id="galleryModalNext">→</button>
-            <div class="gallery-modal-content">
-                <div class="gallery-modal-viewport">
-                    <div class="gallery-modal-track" id="galleryModalTrack"></div>
+    <section class="services fade-in-up" id="services" aria-labelledby="services-title">
+        <div class="section-header">
+            <p class="section-label">What We Offer</p>
+            <h2 class="section-title" id="services-title">Our Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" role="button" tabindex="0" data-service="0" aria-label="Learn more about Document Printing">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📄</div>
+                    <span class="service-number">01</span>
                 </div>
-                <div class="gallery-modal-counter">
-                    <span class="current" id="galleryModalCurrent">1</span>/<span id="galleryModalTotal">10</span>
+                <h3>Document Printing</h3>
+                <p>
+                    High-resolution black & white and color printing for
+                    documents, reports, presentations, and manuals of any
+                    size.
+                </p>
+                <span class="learn-more">Learn more →</span>
+            </div>
+            <div class="service-card" role="button" tabindex="0" data-service="1" aria-label="Learn more about Stickers and Marketing">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">🎨</div>
+                    <span class="service-number">02</span>
                 </div>
-                <div class="gallery-modal-dots" id="galleryModalDots"></div>
+                <h3>Stickers &amp; Marketing</h3>
+                <p>
+                    Custom stickers, labels, brochures, flyers, posters
+                    and banners that make your brand memorable and
+                    professional. High-resolution full-color prints on premium materials.
+                </p>
+                <span class="learn-more">Learn more →</span>
+            </div>
+            <div class="service-card" role="button" tabindex="0" data-service="2" aria-label="Learn more about Bindery and Finishing">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📔</div>
+                    <span class="service-number">03</span>
+                </div>
+                <h3>Bindery &amp; Finishing</h3>
+                <p>
+                    Professional binding, lamination, folding, scoring, and
+                    custom finishing for a polished final product.
+                </p>
+                <span class="learn-more">Learn more →</span>
+            </div>
+            <div class="service-card" role="button" tabindex="0" data-service="3" aria-label="Learn more about Custom Merchandise">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">👕</div>
+                    <span class="service-number">04</span>
+                </div>
+                <h3>Custom Merchandise</h3>
+                <p>
+                    Vinyl printing, heat transfers, and custom printed
+                    merchandise for events, teams, or your business.
+                </p>
+                <span class="learn-more">Learn more →</span>
+            </div>
+            <div class="service-card" role="button" tabindex="0" data-service="4" aria-label="Learn more about Bulk Orders">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📦</div>
+                    <span class="service-number">05</span>
+                </div>
+                <h3>Bulk Orders</h3>
+                <p>
+                    Volume discounts with fast turnaround. Whether you need
+                    100 or 10,000 copies, we deliver on time.
+                </p>
+                <span class="learn-more">Learn more →</span>
+            </div>
+            <div class="service-card" role="button" tabindex="0" data-service="5" aria-label="Learn more about Design Services">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">✨</div>
+                    <span class="service-number">06</span>
+                </div>
+                <h3>Design Services</h3>
+                <p>
+                    Need a design? Our creative team transforms your ideas
+                    into print-ready files that look amazing.
+                </p>
+                <span class="learn-more">Learn more →</span>
             </div>
         </div>
+    </section>
 
-        <footer>
-            <div class="cmyk-badge">
-                <div class="cmyk-dot"></div>
-                <div class="cmyk-dot"></div>
-                <div class="cmyk-dot"></div>
-                <div class="cmyk-dot"></div>
+    <section class="pricing fade-in-up" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-header">
+            <p class="section-label">Transparent Pricing</p>
+            <h2 class="section-title" id="pricing-title">Starting At</h2>
+            <p class="section-desc">
+                Competitive rates for every budget. Contact us for custom quotes on large orders.
+            </p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h4>Document Printing</h4>
+                <div class="price">₱5</div>
+                <div class="price-note">per page (B&amp;W)</div>
+                <p>Color printing also available. Volume discounts for 50+ pages.</p>
+                <a href="#contact" class="btn btn-secondary">Inquire</a>
             </div>
-            <p>&copy; 2026 J3FF Printing Services. All rights reserved.</p>
-        </footer>
+            <div class="pricing-card popular">
+                <h4>Stickers</h4>
+                <div class="price">₱25</div>
+                <div class="price-note">per piece (4x6 in)</div>
+                <p>Custom sizes and materials available. Waterproof and UV-resistant options.</p>
+                <a href="#contact" class="btn">Inquire</a>
+            </div>
+            <div class="pricing-card">
+                <h4>Merchandise</h4>
+                <div class="price">₱150</div>
+                <div class="price-note">per shirt (heat press)</div>
+                <p>Bulk rates for events and teams. Vinyl, DTF, and sublimation available.</p>
+                <a href="#contact" class="btn btn-secondary">Inquire</a>
+            </div>
+            <div class="pricing-card">
+                <h4>Binding</h4>
+                <div class="price">₱35</div>
+                <div class="price-note">per book</div>
+                <p>Spiral, comb, or hardbound. Perfect for thesis, reports, and portfolios.</p>
+                <a href="#contact" class="btn btn-secondary">Inquire</a>
+            </div>
+        </div>
+    </section>
 
-        <script>
-            // Floating particles
-            const canvas = document.getElementById("bgCanvas");
-            const ctx = canvas.getContext("2d");
+    <section class="gallery fade-in-up" id="gallery" aria-labelledby="gallery-title">
+        <div class="section-header">
+            <p class="section-label">Our Work</p>
+            <h2 class="section-title" id="gallery-title">Gallery</h2>
+            <p class="section-desc">
+                See what we can do. From stickers to merchandise, every print is crafted with care.
+            </p>
+        </div>
+        <div class="gallery-ticker-wrapper" id="galleryTickerWrapper" role="listbox" aria-label="Gallery images, drag to scroll">
+            <div class="gallery-ticker" id="galleryTicker"></div>
+        </div>
+    </section>
 
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resize();
-            window.addEventListener("resize", resize);
+    <section class="testimonials fade-in-up" id="testimonials" aria-labelledby="testimonials-title">
+        <div class="section-header">
+            <p class="section-label">What Clients Say</p>
+            <h2 class="section-title" id="testimonials-title">Testimonials</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>
+                    "Sulit na sulit! Yung mga stickers namin para sa event, sobrang ganda ng pagkakaprint. Akala mo binili sa labas ng bansa. Babalik talaga kami."
+                </blockquote>
+                <div class="author">
+                    <div class="author-avatar" aria-hidden="true">M</div>
+                    <div class="author-info">
+                        <strong>Miguel R.</strong>
+                        <span>Event Organizer, San Jose Del Monte</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>
+                    "First time ko magpagawa dito, akala ko okay na yong file ko. Buti na lang may nagcheck sila, mali pala yong margin, di ko napansin. Kung ibang shop yon, baka naprint na yon sayang pera ko. Galing!"
+                </blockquote>
+                <div class="author">
+                    <div class="author-avatar" aria-hidden="true">A</div>
+                    <div class="author-info">
+                        <strong>Jenny C.</strong>
+                        <span>Small Business Owner, Bulacan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>
+                    "Consistent quality every single time. They've been printing our school forms and materials for months and never once missed a deadline. Fair pricing too."
+                </blockquote>
+                <div class="author">
+                    <div class="author-avatar" aria-hidden="true">C</div>
+                    <div class="author-info">
+                        <strong>Carlos D.</strong>
+                        <span>School Administrator, SJDM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            const particles = [];
+    <section class="features fade-in-up" id="features" aria-labelledby="features-title">
+        <div class="section-header">
+            <p class="section-label">Why Choose Us</p>
+            <h2 class="section-title" id="features-title">The J3FF Difference</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" aria-hidden="true">✓</div>
+                <h4><span style="color: var(--accent-cyan)">We'll catch it first</span></h4>
+                <p>
+                    Low-res file? Wrong bleed margin? We catch it before it
+                    prints — not after you've paid.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" aria-hidden="true">✓</div>
+                <h4><span style="color: var(--accent-magenta)">You talk to the person doing the work</span></h4>
+                <p>
+                    No middlemen, no lost messages. Ask us anything, get a
+                    straight answer.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" aria-hidden="true">✓</div>
+                <h4><span style="color: var(--accent-yellow)">We've been there</span></h4>
+                <p>
+                    We understand tight budgets and fast deadlines. We'll
+                    work with you, not around you.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" aria-hidden="true">🙋</div>
+                <h4>Walk-ins Welcome</h4>
+                <p>Visit us anytime — we're a real shop, not just online.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about fade-in-up" id="about" aria-labelledby="about-title">
+        <div class="about-content">
+            <p class="section-label">Who We Are</p>
+            <h2 class="section-title" id="about-title" style="margin-bottom: 2rem">
+                A Family Behind Every Print
+            </h2>
+            <p>
+                J3FF Printing Services isn't a franchise or a copy shop
+                chain. It's us.
+                <span style="color: #c4c4c4; font-weight: 600"
+                    >A family that has spent years getting this right</span
+                >, learning which paper holds color best, which finishes
+                last, and how to treat every client like a repeat customer
+                from day one.
+            </p>
+            <p style="margin-top: 1rem">
+                Whether you're printing stickers for your brand, flyers for
+                a local event, or business cards that need to impress, we
+                handle your job like our name is on it. Because it is.
+            </p>
+        </div>
+    </section>
+
+    <section class="contact fade-in-up" id="contact" aria-labelledby="contact-title">
+        <div class="section-header">
+            <p class="section-label">Let's Talk</p>
+            <h2 class="section-title" id="contact-title">Get In Touch</h2>
+        </div>
+        <div class="contact-cards">
+            <a href="mailto:jtc20007@gmail.com?subject=Inquiry" class="contact-card" aria-label="Send us an email">
+                <div class="contact-card-icon" aria-hidden="true">📧</div>
+                <h4>Email</h4>
+                <p>jtc20007@gmail.com</p>
+            </a>
+            <a href="tel:+639193560058" class="contact-card" aria-label="Call us">
+                <div class="contact-card-icon" aria-hidden="true">📱</div>
+                <h4>Phone</h4>
+                <p>+63 919-356-0058</p>
+            </a>
+            <a href="https://www.google.com/maps/place/BLK+7+gumaoc+central/@14.7999213,121.0652183,3a,75y,340.84h,84.81t/data=!3m7!1e1!3m5!1sMy3d3x3KeRAJbo4zQr_5PQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D5.189999999999998%26panoid%3DMy3d3x3KeRAJbo4zQr_5PQ%26yaw%3D340.84!7i16384!8i8192!4m7!3m6!1s0x3397af4fb8442e39:0x5c1a1c67f7da0e22!8m2!3d14.8016476!4d121.0642384!10e5!16s%2Fg%2F11p_5v7htw?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="contact-card" aria-label="View our location on Google Maps">
+                <div class="contact-card-icon" aria-hidden="true">📍</div>
+                <h4>Location</h4>
+                <p>
+                    Blk. 7, Gumaoc Central<br />City of San Jose Del Monte,
+                    Bulacan.
+                </p>
+            </a>
+        </div>
+
+        <div class="contact-form" id="quoteForm" role="form" aria-label="Request a quote">
+            <h3>Request a Quote</h3>
+            <p class="form-subtitle">Tell us what you need and we'll get back to you within 24 hours.</p>
+            <form action="mailto:jtc20007@gmail.com" method="post" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formName">Name *</label>
+                        <input type="text" id="formName" name="name" required placeholder="Your name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="formEmail">Email *</label>
+                        <input type="email" id="formEmail" name="email" required placeholder="your@email.com" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formPhone">Phone</label>
+                        <input type="tel" id="formPhone" name="phone" placeholder="+63 XXX XXX XXXX" />
+                    </div>
+                    <div class="form-group">
+                        <label for="formService">Service Needed *</label>
+                        <select id="formService" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="document">Document Printing</option>
+                            <option value="stickers">Stickers &amp; Marketing Materials</option>
+                            <option value="binding">Bindery &amp; Finishing</option>
+                            <option value="merchandise">Custom Merchandise</option>
+                            <option value="bulk">Bulk Order</option>
+                            <option value="design">Design Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formMessage">Tell us about your project *</label>
+                    <textarea id="formMessage" name="message" required placeholder="Quantity, size, paper type, deadline, etc."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formFile">Attach a file (optional)</label>
+                    <input type="file" id="formFile" name="file" accept=".pdf,.ai,.psd,.png,.jpg,.jpeg,.tiff" />
+                </div>
+                <button type="submit" class="btn form-submit">
+                    Send Request <span class="btn-arrow" aria-hidden="true">→</span>
+                </button>
+            </form>
+        </div>
+
+        <a href="https://www.facebook.com/J3FFPRINTING" target="_blank" class="facebook-link" aria-label="Visit our Facebook page">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.955 10.125 11.854v-8.385H7.078v-3.47h3.047V9.283c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.028 24 18.062 24 12.073z" />
+            </svg>
+            Visit Our Facebook Page
+        </a>
+    </section>
+
+    <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
+        <button class="gallery-modal-close" id="galleryModalClose" aria-label="Close gallery">✕</button>
+        <button class="gallery-modal-nav gallery-modal-prev" id="galleryModalPrev" aria-label="Previous image">←</button>
+        <button class="gallery-modal-nav gallery-modal-next" id="galleryModalNext" aria-label="Next image">→</button>
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-viewport">
+                <div class="gallery-modal-track" id="galleryModalTrack"></div>
+            </div>
+            <div class="gallery-modal-footer">
+                <div class="gallery-modal-counter" aria-live="polite">
+                    <span class="current" id="galleryModalCurrent">1</span> / <span id="galleryModalTotal">6</span>
+                </div>
+                <div class="gallery-modal-dots" id="galleryModalDots" role="tablist" aria-label="Image navigation dots"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-modal" id="serviceModal" role="dialog" aria-modal="true" aria-label="Service details">
+        <div class="service-modal-content" id="serviceModalContent">
+            <button class="service-modal-close" id="serviceModalClose" aria-label="Close service details">✕</button>
+            <div class="service-modal-icon" id="serviceModalIcon" aria-hidden="true"></div>
+            <h2 id="serviceModalTitle"></h2>
+            <p class="service-modal-desc" id="serviceModalDesc"></p>
+            <ul class="service-modal-details" id="serviceModalDetails"></ul>
+            <a href="#contact" class="btn" id="serviceModalCTA">
+                Request This Service <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+
+    <footer role="contentinfo">
+        <div class="cmyk-badge" aria-hidden="true">
+            <div class="cmyk-dot"></div>
+            <div class="cmyk-dot"></div>
+            <div class="cmyk-dot"></div>
+            <div class="cmyk-dot"></div>
+        </div>
+        <p>&copy; 2026 J3FF Printing Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const isMobile = window.innerWidth <= 768;
+
+        const canvas = document.getElementById("bgCanvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        let animId = null;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        if (!prefersReducedMotion) {
             const particleCount = 35;
 
             class Particle {
                 constructor() {
                     this.reset();
                 }
-
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
@@ -1198,21 +1896,13 @@
                     this.speedY = (Math.random() - 0.5) * 0.4;
                     this.opacity = Math.random() * 0.25 + 0.08;
                 }
-
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
-
-                    if (
-                        this.x < 0 ||
-                        this.x > canvas.width ||
-                        this.y < 0 ||
-                        this.y > canvas.height
-                    ) {
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
                         this.reset();
                     }
                 }
-
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -1225,212 +1915,543 @@
                 particles.push(new Particle());
             }
 
-            function animate() {
+            function animateParticles() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                particles.forEach((p) => {
+                particles.forEach(function (p) {
                     p.update();
                     p.draw();
                 });
-
-                requestAnimationFrame(animate);
+                animId = requestAnimationFrame(animateParticles);
             }
-            animate();
-        </script>
-        <script>
-            const modal = document.getElementById("galleryModal");
-            const modalTrack = document.getElementById("galleryModalTrack");
-            const modalClose = document.getElementById("galleryModalClose");
-            const modalPrev = document.getElementById("galleryModalPrev");
-            const modalNext = document.getElementById("galleryModalNext");
-            const modalCurrent = document.getElementById("galleryModalCurrent");
-            const modalTotal = document.getElementById("galleryModalTotal");
-            const modalDotsContainer = document.getElementById("galleryModalDots");
-            const ticker = document.getElementById("galleryTicker");
-            const galleryImages = [
-                "batch_g29.jpg",
-                "batch_g30.jpg",
-                "batch_g31.jpg",
-                "batch_g32.jpg",
-                "batch_g33.jpg",
-                "batch_g34.jpg",
-                "batch_g35.jpg",
-                "batch_g36.jpg",
-                "batch_g37.jpg",
-                "batch_g38.jpg"
-            ];
-            const totalImages = galleryImages.length;
-            let modalIndex = 0;
+            animateParticles();
+        }
 
-            galleryImages.forEach((img, i) => {
-                const tickerItem = document.createElement("div");
-                tickerItem.className = "gallery-ticker-item";
-                tickerItem.dataset.index = i;
-                tickerItem.innerHTML = `<img src="images/${img}" alt="J3FF Print Sample ${i + 1}" />`;
-                ticker.appendChild(tickerItem);
-            });
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileMenu = document.getElementById("mobileMenu");
 
-            // Duplicate for seamless infinite loop
-            galleryImages.forEach((img, i) => {
-                const tickerItem = document.createElement("div");
-                tickerItem.className = "gallery-ticker-item";
-                tickerItem.dataset.index = i;
-                tickerItem.innerHTML = `<img src="images/${img}" alt="J3FF Print Sample ${i + 1}" />`;
-                ticker.appendChild(tickerItem);
-            });
+        function closeMobileMenu() {
+            hamburgerBtn.classList.remove("active");
+            hamburgerBtn.setAttribute("aria-expanded", "false");
+            mobileOverlay.classList.remove("active");
+            mobileMenu.classList.remove("active");
+            document.body.style.overflow = "";
+        }
 
-            galleryImages.forEach((img) => {
-                const slide = document.createElement("div");
+        function openMobileMenu() {
+            hamburgerBtn.classList.add("active");
+            hamburgerBtn.setAttribute("aria-expanded", "true");
+            mobileOverlay.classList.add("active");
+            mobileMenu.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        hamburgerBtn.addEventListener("click", function () {
+            const isOpen = hamburgerBtn.classList.contains("active");
+            isOpen ? closeMobileMenu() : openMobileMenu();
+        });
+
+        mobileOverlay.addEventListener("click", closeMobileMenu);
+
+        document.querySelectorAll(".mobile-nav-link").forEach(function (link) {
+            link.addEventListener("click", closeMobileMenu);
+        });
+
+        const galleryImages = [
+            { file: "sample1.webp", w: 1600, h: 1200 },
+            { file: "sample2.webp", w: 1600, h: 1200 },
+            { file: "sample3.webp", w: 1600, h: 1200 },
+            { file: "sample4.webp", w: 1600, h: 900 },
+            { file: "sample5.webp", w: 1600, h: 1200 },
+            { file: "sample6.webp", w: 1200, h: 1600 }
+        ];
+        const totalImages = galleryImages.length;
+        let modalIndex = 0;
+
+        function createPictureElement(img, alt, extra) {
+            var el = document.createElement("img");
+            el.src = "images/" + img.file;
+            el.alt = alt;
+            el.width = img.w;
+            el.height = img.h;
+            el.loading = "lazy";
+            if (extra) {
+                for (var key in extra) {
+                    el.setAttribute(key, extra[key]);
+                }
+            }
+            return el;
+        }
+
+        const ticker = document.getElementById("galleryTicker");
+
+        function buildTickerItem(img, i) {
+            const item = document.createElement("div");
+            item.className = "gallery-ticker-item";
+            item.dataset.index = i;
+            var pic = createPictureElement(img, "J3FF Print Sample " + (i + 1), {});
+            item.appendChild(pic);
+            return item;
+        }
+
+        galleryImages.forEach(function (img, i) {
+            ticker.appendChild(buildTickerItem(img, i));
+        });
+        galleryImages.forEach(function (img, i) {
+            ticker.appendChild(buildTickerItem(img, i));
+        });
+
+        const modal = document.getElementById("galleryModal");
+        const modalTrack = document.getElementById("galleryModalTrack");
+        const modalClose = document.getElementById("galleryModalClose");
+        const modalPrev = document.getElementById("galleryModalPrev");
+        const modalNext = document.getElementById("galleryModalNext");
+        const modalCurrent = document.getElementById("galleryModalCurrent");
+        const modalTotal = document.getElementById("galleryModalTotal");
+        const modalDotsContainer = document.getElementById("galleryModalDots");
+
+        function buildModalTrack() {
+            // Clone of last image (prepended for seamless backward wrap)
+            var lastClone = document.createElement("div");
+            lastClone.className = "gallery-modal-slide";
+            var lastPic = createPictureElement(galleryImages[totalImages - 1], "J3FF Print Sample", {});
+            lastClone.appendChild(lastPic);
+            lastClone.addEventListener("click", function () { this.classList.toggle("zoomed"); });
+            modalTrack.appendChild(lastClone);
+
+            // Real images
+            galleryImages.forEach(function (img) {
+                var slide = document.createElement("div");
                 slide.className = "gallery-modal-slide";
-                slide.innerHTML = `<img src="images/${img}" alt="J3FF Print Sample" />`;
+                var pic = createPictureElement(img, "J3FF Print Sample", {});
+                slide.appendChild(pic);
+                slide.addEventListener("click", function () { this.classList.toggle("zoomed"); });
                 modalTrack.appendChild(slide);
             });
 
-            modalTotal.textContent = totalImages;
+            // Clone of first image (appended for seamless forward wrap)
+            var firstClone = document.createElement("div");
+            firstClone.className = "gallery-modal-slide";
+            var firstPic = createPictureElement(galleryImages[0], "J3FF Print Sample", {});
+            firstClone.appendChild(firstPic);
+            firstClone.addEventListener("click", function () { this.classList.toggle("zoomed"); });
+            modalTrack.appendChild(firstClone);
+        }
+        buildModalTrack();
 
-            for (let i = 0; i < totalImages; i++) {
-                const dot = document.createElement("button");
-                dot.className = "gallery-modal-dot" + (i === 0 ? " active" : "");
-                dot.addEventListener("click", () => goToModalSlide(i));
-                modalDotsContainer.appendChild(dot);
+        modalTotal.textContent = totalImages;
+        var dots = [];
+
+        for (let i = 0; i < totalImages; i++) {
+            const dot = document.createElement("button");
+            dot.className = "gallery-modal-dot" + (i === 0 ? " active" : "");
+            dot.setAttribute("role", "tab");
+            dot.setAttribute("aria-label", "Go to image " + (i + 1));
+            dot.addEventListener("click", (function (idx) {
+                return function () { goToModalSlide(idx); };
+            })(i));
+            modalDotsContainer.appendChild(dot);
+            dots.push(dot);
+        }
+
+        const tickerItems = document.querySelectorAll(".gallery-ticker-item");
+        const tickerWrapper = document.getElementById("galleryTickerWrapper");
+        let isDragging = false;
+        let wasDragged = false;
+        let startX = 0;
+        let lastMoveX = 0;
+        let lastMoveTime = 0;
+        let velocity = 0;
+        let tickerPos = 0;
+        const tickerSpeed = 0.5;
+        const MAX_VELOCITY = 20;
+
+        function getTickerWidth() {
+            return ticker.scrollWidth / 2;
+        }
+
+        tickerWrapper.addEventListener("pointerdown", function (e) {
+            e.preventDefault();
+            isDragging = true;
+            wasDragged = false;
+            startX = e.clientX;
+            lastMoveX = e.clientX;
+            lastMoveTime = Date.now();
+            velocity = 0;
+            tickerPos = tickerPos || 0;
+            ticker.classList.add("dragging");
+            e.target.setPointerCapture(e.pointerId);
+        });
+
+        tickerWrapper.addEventListener("pointermove", function (e) {
+            if (!isDragging) return;
+            wasDragged = true;
+            const now = Date.now();
+            const dt = now - lastMoveTime;
+            if (dt > 0) {
+                velocity = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY,
+                    ((lastMoveX - e.clientX) / dt) * 16
+                ));
             }
-            const dots = modalDotsContainer.querySelectorAll(".gallery-modal-dot");
-            const tickerItems = document.querySelectorAll(".gallery-ticker-item");
+            lastMoveX = e.clientX;
+            lastMoveTime = now;
 
-            const tickerWrapper = document.getElementById("galleryTickerWrapper");
-            let isDragging = false;
-            let wasDragged = false;
-            let startX = 0;
-            let lastMoveX = 0;
-            let lastMoveTime = 0;
-            let velocity = 0;
-            let tickerPos = 0;
-            let tickerSpeed = 0.5;
+            const walk = (e.clientX - startX) * 1.5;
+            tickerPos -= walk;
+            startX = e.clientX;
 
-            function getTickerWidth() {
-                return ticker.scrollWidth / 2;
-            }
+            const halfWidth = getTickerWidth();
+            if (tickerPos < 0) tickerPos += halfWidth;
+            if (tickerPos >= halfWidth) tickerPos -= halfWidth;
 
-            tickerWrapper.addEventListener("pointerdown", (e) => {
-                e.preventDefault();
-                isDragging = true;
-                wasDragged = false;
-                startX = e.clientX;
-                lastMoveX = e.clientX;
-                lastMoveTime = Date.now();
-                velocity = 0;
-                tickerPos = tickerPos || 0;
-                ticker.classList.add("dragging");
-                e.target.setPointerCapture(e.pointerId);
-            });
+            ticker.style.transform = "translateX(-" + tickerPos + "px)";
+        });
 
-            const MAX_VELOCITY = 20;
-            tickerWrapper.addEventListener("pointermove", (e) => {
-                if (!isDragging) return;
-                wasDragged = true;
-                const now = Date.now();
-                const dt = now - lastMoveTime;
-                if (dt > 0) {
-                    velocity = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, (lastMoveX - e.clientX) / dt * 16));
-                }
-                lastMoveX = e.clientX;
-                lastMoveTime = now;
+        tickerWrapper.addEventListener("pointerup", function () {
+            isDragging = false;
+            ticker.classList.remove("dragging");
+        });
 
-                const walk = (e.clientX - startX) * 1.5;
-                tickerPos -= walk;
-                startX = e.clientX;
+        tickerWrapper.addEventListener("pointerleave", function () {
+            isDragging = false;
+            ticker.classList.remove("dragging");
+        });
+
+        let lastTime = 0;
+
+        function tickerAutoScroll(time) {
+            if (prefersReducedMotion) return;
+            if (isDragging) {
+                lastTime = 0;
+                velocity *= 0.9;
+            } else {
+                if (!lastTime) lastTime = time;
+                const delta = time - lastTime;
+                lastTime = time;
+
+                const baseSpeed = tickerSpeed * 0.05;
+                const currentSpeed = baseSpeed + velocity * 0.08;
+
+                tickerPos += currentSpeed * delta;
+                velocity *= 0.95;
 
                 const halfWidth = getTickerWidth();
-                if (tickerPos < 0) tickerPos += halfWidth;
                 if (tickerPos >= halfWidth) tickerPos -= halfWidth;
-
-                ticker.style.transform = `translateX(-${tickerPos}px)`;
-            });
-
-            tickerWrapper.addEventListener("pointerup", () => {
-                isDragging = false;
-                ticker.classList.remove("dragging");
-            });
-
-            tickerWrapper.addEventListener("pointerleave", () => {
-                isDragging = false;
-                ticker.classList.remove("dragging");
-            });
-
-            let lastTime = 0;
-            function tickerAutoScroll(time) {
-                if (isDragging) {
-                    lastTime = 0;
-                    velocity *= 0.9;
-                } else {
-                    if (!lastTime) lastTime = time;
-                    const delta = time - lastTime;
-                    lastTime = time;
-
-                    const baseSpeed = tickerSpeed * 0.05;
-                    const currentSpeed = baseSpeed + velocity * 0.08;
-
-                    tickerPos += currentSpeed * delta;
-                    velocity *= 0.95;
-
-                    const halfWidth = getTickerWidth();
-                    if (tickerPos >= halfWidth) tickerPos -= halfWidth;
-                    if (tickerPos < 0) tickerPos += halfWidth;
-                    ticker.style.transform = `translateX(-${tickerPos}px)`;
-                }
-                requestAnimationFrame(tickerAutoScroll);
+                if (tickerPos < 0) tickerPos += halfWidth;
+                ticker.style.transform = "translateX(-" + tickerPos + "px)";
             }
             requestAnimationFrame(tickerAutoScroll);
+        }
+        requestAnimationFrame(tickerAutoScroll);
 
-            function goToModalSlide(index) {
-                modalIndex = index;
-                modalTrack.style.transform = `translateX(-${modalIndex * 100}%)`;
-                modalCurrent.textContent = modalIndex + 1;
-                dots.forEach((dot, i) => dot.classList.toggle("active", i === modalIndex));
+        function goToModalSlide(index) {
+            var prevIndex = modalIndex;
+            modalIndex = index;
+
+            var slides = modalTrack.querySelectorAll(".gallery-modal-slide");
+            slides.forEach(function (s) { s.classList.remove("zoomed"); });
+
+            var targetSlide;
+            if (prevIndex === totalImages - 1 && index === 0) {
+                targetSlide = totalImages + 1;
+            } else if (prevIndex === 0 && index === totalImages - 1) {
+                targetSlide = 0;
+            } else {
+                targetSlide = index + 1;
             }
 
-            function openModal(index) {
-                goToModalSlide(index);
-                modal.classList.add("active");
-                document.body.style.overflow = "hidden";
-            }
+            modalTrack.style.transform = "translateX(-" + (targetSlide * 100) + "%)";
 
-            function closeModal() {
-                modal.classList.remove("active");
-                document.body.style.overflow = "";
-            }
-
-            modalPrev.addEventListener("click", () => goToModalSlide((modalIndex - 1 + totalImages) % totalImages));
-            modalNext.addEventListener("click", () => goToModalSlide((modalIndex + 1) % totalImages));
-            modalClose.addEventListener("click", closeModal);
-            modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
-
-            tickerItems.forEach((item, index) => {
-                item.addEventListener("click", (e) => {
-                    if (wasDragged) {
-                        e.stopPropagation();
-                        wasDragged = false;
-                        return;
-                    }
-                    openModal(index % totalImages);
-                });
+            modalCurrent.textContent = index + 1;
+            dots.forEach(function (dot, i) {
+                dot.classList.toggle("active", i === index);
+                dot.setAttribute("aria-selected", i === index ? "true" : "false");
             });
+        }
 
-            document.addEventListener("keydown", (e) => {
-                if (!modal.classList.contains("active")) return;
-                if (e.key === "Escape") closeModal();
-                if (e.key === "ArrowLeft") modalPrev.click();
-                if (e.key === "ArrowRight") modalNext.click();
-            });
+        modalTrack.addEventListener("transitionend", function () {
+            var match = modalTrack.style.transform.match(/-?(\d+)%/);
+            if (!match) return;
+            var currentSlide = parseInt(match[1]) / 100;
 
-            let touchStartX = 0;
-            modalTrack.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-            modalTrack.addEventListener("touchend", (e) => {
-                const diff = touchStartX - e.changedTouches[0].screenX;
-                if (Math.abs(diff) > 50) {
-                    diff > 0 ? modalNext.click() : modalPrev.click();
+            if (currentSlide === 0) {
+                modalTrack.style.transition = "none";
+                modalTrack.style.transform = "translateX(-" + (totalImages * 100) + "%)";
+                void modalTrack.offsetHeight;
+                modalTrack.style.transition = "";
+            } else if (currentSlide === totalImages + 1) {
+                modalTrack.style.transition = "none";
+                modalTrack.style.transform = "translateX(-100%)";
+                void modalTrack.offsetHeight;
+                modalTrack.style.transition = "";
+            }
+        });
+
+        function openModal(index) {
+            modalTrack.style.transition = "none";
+            goToModalSlide(index);
+            void modalTrack.offsetHeight;
+            modalTrack.style.transition = "";
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+            trapFocus(modal);
+        }
+
+        function closeModal() {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+            removeTrapFocus();
+        }
+
+        modalPrev.addEventListener("click", function () {
+            goToModalSlide((modalIndex - 1 + totalImages) % totalImages);
+        });
+        modalNext.addEventListener("click", function () {
+            goToModalSlide((modalIndex + 1) % totalImages);
+        });
+        modalClose.addEventListener("click", closeModal);
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) closeModal();
+        });
+
+        tickerItems.forEach(function (item, index) {
+            item.addEventListener("click", function (e) {
+                if (wasDragged) {
+                    e.stopPropagation();
+                    wasDragged = false;
+                    return;
                 }
-            }, { passive: true });
-        </script>
-    </body>
+                openModal(index % totalImages);
+            });
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (modal.classList.contains("active")) {
+                if (e.key === "Escape") { closeModal(); return; }
+                if (e.key === "ArrowLeft") { modalPrev.click(); return; }
+                if (e.key === "ArrowRight") { modalNext.click(); return; }
+            }
+            if (serviceModal.classList.contains("active")) {
+                if (e.key === "Escape") { closeServiceModal(); return; }
+            }
+        });
+
+        let touchStartX = 0;
+        modalTrack.addEventListener("touchstart", function (e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        modalTrack.addEventListener("touchend", function (e) {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? modalNext.click() : modalPrev.click();
+            }
+        }, { passive: true });
+
+        let focusableElements = [];
+        let lastFocusedElement = null;
+
+        function trapFocus(container) {
+            lastFocusedElement = document.activeElement;
+            focusableElements = container.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            if (focusableElements.length) {
+                focusableElements[0].focus();
+            }
+        }
+
+        function removeTrapFocus() {
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
+            focusableElements = [];
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key !== "Tab") return;
+            var activeModal = null;
+            if (modal.classList.contains("active")) activeModal = modal;
+            if (serviceModal.classList.contains("active")) activeModal = serviceModal;
+            if (!activeModal) return;
+
+            var focusable = activeModal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            if (!focusable.length) return;
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
+        const serviceData = [
+            {
+                icon: "📄",
+                title: "Document Printing",
+                desc: "High-resolution black & white and color printing for all your document needs. We handle reports, presentations, manuals, forms, and more. Every document is checked for print readiness before we run your job.",
+                details: [
+                    "Black & white and full-color printing",
+                    "Sizes: A4, Legal, Letter, A3, and custom",
+                    "Premium paper stocks available (80gsm – 250gsm)",
+                    "Same-day service for most orders",
+                    "Volume discounts for 50+ pages"
+                ]
+            },
+            {
+                icon: "🎨",
+                title: "Stickers & Marketing Materials",
+                desc: "Make your brand unforgettable with premium custom stickers, labels, brochures, flyers, posters, and banners. Full-color CMYK printing on a variety of materials designed to stand out.",
+                details: [
+                    "Custom shapes, sizes, and finishes (matte, gloss, transparent)",
+                    "Waterproof and UV-resistant options available",
+                    "Kiss-cut, die-cut, and sheet-cut stickers",
+                    "Flyers, brochures, posters up to A2 size",
+                    "Banners and tarpaulins for events and storefronts"
+                ]
+            },
+            {
+                icon: "📔",
+                title: "Bindery & Finishing",
+                desc: "Give your documents a polished, professional finish. From thesis binding to corporate reports, our finishing services elevate your work from basic to impressive.",
+                details: [
+                    "Spiral binding, comb binding, and wire-o",
+                    "Hardbound and softbound book binding",
+                    "Lamination (hot/cold, glossy/matte)",
+                    "Folding, scoring, perforation, and trimming",
+                    "Perfect for thesis, portfolios, and corporate reports"
+                ]
+            },
+            {
+                icon: "👕",
+                title: "Custom Merchandise",
+                desc: "Create custom-printed merchandise for your brand, event, or team. We offer multiple printing methods to match your design and budget.",
+                details: [
+                    "Vinyl heat press printing (durable, vibrant colors)",
+                    "DTF (Direct to Film) transfers for detailed designs",
+                    "Sublimation printing on polyester fabrics",
+                    "T-shirts, tote bags, caps, mugs, and more",
+                    "Bulk rates for teams, events, and giveaways"
+                ]
+            },
+            {
+                icon: "📦",
+                title: "Bulk Orders",
+                desc: "Need volume? We've got you covered with fast turnaround and competitive pricing. Whether you need 100 or 10,000 copies, we deliver on time without sacrificing quality.",
+                details: [
+                    "Volume discounts on quantities 100+",
+                    "Dedicated point of contact for large projects",
+                    "Flexible scheduling and delivery options",
+                    "Quality checks at every stage of production",
+                    "Consistent results across the entire run"
+                ]
+            },
+            {
+                icon: "✨",
+                title: "Design Services",
+                desc: "Don't have a print-ready file? No problem. Our creative team can take your ideas—even rough sketches—and transform them into professional, print-ready artwork.",
+                details: [
+                    "Logo design and branding packages",
+                    "Layout and composition for flyers, posters, brochures",
+                    "File preparation and preflight checks",
+                    "Format conversion (PDF, AI, PSD, CDR)",
+                    "Revisions until you're satisfied"
+                ]
+            }
+        ];
+
+        const serviceModal = document.getElementById("serviceModal");
+        const serviceModalContent = document.getElementById("serviceModalContent");
+        const serviceModalIcon = document.getElementById("serviceModalIcon");
+        const serviceModalTitle = document.getElementById("serviceModalTitle");
+        const serviceModalDesc = document.getElementById("serviceModalDesc");
+        const serviceModalDetails = document.getElementById("serviceModalDetails");
+        const serviceModalClose = document.getElementById("serviceModalClose");
+        const serviceModalCTA = document.getElementById("serviceModalCTA");
+
+        function openServiceModal(index) {
+            var data = serviceData[index];
+            serviceModalIcon.textContent = data.icon;
+            serviceModalTitle.textContent = data.title;
+            serviceModalDesc.textContent = data.desc;
+            serviceModalDetails.innerHTML = "";
+            data.details.forEach(function (d) {
+                var li = document.createElement("li");
+                li.textContent = d;
+                serviceModalDetails.appendChild(li);
+            });
+            serviceModalCTA.href = "#contact";
+            serviceModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+            trapFocus(serviceModal);
+        }
+
+        function closeServiceModal() {
+            serviceModal.classList.remove("active");
+            document.body.style.overflow = "";
+            removeTrapFocus();
+        }
+
+        serviceModalClose.addEventListener("click", closeServiceModal);
+        serviceModal.addEventListener("click", function (e) {
+            if (e.target === serviceModal) closeServiceModal();
+        });
+
+        document.querySelectorAll(".service-card").forEach(function (card) {
+            card.addEventListener("click", function () {
+                var idx = parseInt(this.dataset.service);
+                openServiceModal(idx);
+            });
+            card.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    var idx = parseInt(this.dataset.service);
+                    openServiceModal(idx);
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    if (!prefersReducedMotion) {
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".fade-in-up").forEach(function (el) {
+            observer.observe(el);
+        });
+
+        if (prefersReducedMotion) {
+            document.querySelectorAll(".fade-in-up").forEach(function (el) {
+                el.classList.add("visible");
+            });
+        }
+
+        window.addEventListener("resize", function () {
+            if (hamburgerBtn.classList.contains("active") && window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
 </html>
