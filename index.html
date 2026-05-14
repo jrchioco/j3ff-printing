@@ -31,7 +31,7 @@
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Blk. 7, Gumaoc Central",
-            "addressLocality": "City of San Jose Del Monte",
+            "addressLocality": "City of San Jose del Monte",
             "addressRegion": "Bulacan",
             "addressCountry": "PH"
         },
@@ -92,7 +92,6 @@
             opacity: 0.3;
             pointer-events: none;
             z-index: -1;
-            transition: background-image 0.3s;
         }
 
         .bg-glow {
@@ -872,7 +871,7 @@
 
         .contact {
             padding: 8rem 2rem;
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
@@ -892,9 +891,9 @@
             border: 1px solid var(--border);
             text-align: center;
             transition: all 0.3s;
-            min-width: 200px;
+            min-width: 220px;
             flex: 1;
-            max-width: 250px;
+            max-width: 300px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -925,6 +924,60 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 0.5rem;
+        }
+
+        .branches-label {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .branch-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .branch-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+            min-width: 200px;
+            flex: 1;
+            max-width: 280px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .branch-card:hover {
+            background: var(--bg-elevated);
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+
+        .branch-card-icon {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .branch-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .branch-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
 
         .contact-form {
@@ -1351,10 +1404,6 @@
             font-weight: 600;
         }
 
-        @keyframes fade-in-up-scroll {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         .fade-in-up {
             opacity: 0;
@@ -1387,9 +1436,11 @@
 
             .testimonials-grid { grid-template-columns: 1fr; }
 
+            .contact { max-width: 100%; }
             .contact-cards { flex-direction: column; align-items: center; }
-
-            .contact-card { width: 100%; max-width: 300px; }
+            .contact-card { width: 100%; max-width: 320px; }
+            .branch-grid { flex-direction: column; align-items: center; }
+            .branch-card { width: 100%; max-width: 320px; }
 
             .form-row { grid-template-columns: 1fr; }
 
@@ -1420,7 +1471,7 @@
             }
 
             .bg-canvas { display: none; }
-            .bg-glow { animation: none; }
+            .bg-glow-1, .bg-glow-2 { animation: none; }
             .gallery-ticker { animation: none; }
             .fade-in-up { opacity: 1; transform: none; }
         }
@@ -1594,15 +1645,15 @@
             <div class="pricing-card">
                 <h4>Document Printing</h4>
                 <div class="price">₱5</div>
-                <div class="price-note">per page (B&amp;W)</div>
-                <p>Color printing also available. Volume discounts for 50+ pages.</p>
+                <div class="price-note">B&amp;W per page</div>
+                <p>Color printing starts at ₱7/page. Volume discounts for 50+ pages.</p>
                 <a href="#contact" class="btn btn-secondary">Inquire</a>
             </div>
             <div class="pricing-card popular">
                 <h4>Stickers</h4>
-                <div class="price">₱25</div>
-                <div class="price-note">per piece (4x6 in)</div>
-                <p>Custom sizes and materials available. Waterproof and UV-resistant options.</p>
+                <div class="price">₱70</div>
+                <div class="price-note">vinyl sticker (A4) — waterproof</div>
+                <p>Photo sticker also available at ₱30/A4 for labels and disposable use.</p>
                 <a href="#contact" class="btn">Inquire</a>
             </div>
             <div class="pricing-card">
@@ -1613,10 +1664,10 @@
                 <a href="#contact" class="btn btn-secondary">Inquire</a>
             </div>
             <div class="pricing-card">
-                <h4>Binding</h4>
-                <div class="price">₱35</div>
-                <div class="price-note">per book</div>
-                <p>Spiral, comb, or hardbound. Perfect for thesis, reports, and portfolios.</p>
+                <h4>Spiral Binding</h4>
+                <div class="price">₱65</div>
+                <div class="price-note">per book (65 pages)</div>
+                <p>+₱1 per additional page. Perfect for thesis, reports, and portfolios.</p>
                 <a href="#contact" class="btn btn-secondary">Inquire</a>
             </div>
         </div>
@@ -1650,7 +1701,7 @@
                     <div class="author-avatar" aria-hidden="true">M</div>
                     <div class="author-info">
                         <strong>Miguel R.</strong>
-                        <span>Event Organizer, San Jose Del Monte</span>
+                        <span>Event Organizer, San Jose del Monte</span>
                     </div>
                 </div>
             </div>
@@ -1760,13 +1811,31 @@
                 <h4>Phone</h4>
                 <p>+63 919-356-0058</p>
             </a>
-            <a href="https://www.google.com/maps/place/BLK+7+gumaoc+central/@14.7999213,121.0652183,3a,75y,340.84h,84.81t/data=!3m7!1e1!3m5!1sMy3d3x3KeRAJbo4zQr_5PQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D5.189999999999998%26panoid%3DMy3d3x3KeRAJbo4zQr_5PQ%26yaw%3D340.84!7i16384!8i8192!4m7!3m6!1s0x3397af4fb8442e39:0x5c1a1c67f7da0e22!8m2!3d14.8016476!4d121.0642384!10e5!16s%2Fg%2F11p_5v7htw?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="contact-card" aria-label="View our location on Google Maps">
-                <div class="contact-card-icon" aria-hidden="true">📍</div>
-                <h4>Location</h4>
-                <p>
-                    Blk. 7, Gumaoc Central<br />City of San Jose Del Monte,
-                    Bulacan.
-                </p>
+        </div>
+
+        <a href="https://www.facebook.com/J3FFPRINTING" target="_blank" class="facebook-link" aria-label="Visit our Facebook page">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.955 10.125 11.854v-8.385H7.078v-3.47h3.047V9.283c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.028 24 18.062 24 12.073z" />
+            </svg>
+            Visit Our Facebook Page
+        </a>
+
+        <p class="branches-label">Our Branches</p>
+        <div class="branch-grid">
+            <a href="https://www.google.com/maps/place/Block+2+Gumaok+Main+Rd,+Gumaok+East,+SJDM,+3023+Bulacan/@14.7994218,121.067332,3a,33.1y,358.47h,80.28t/data=!3m7!1e1!3m5!1ss3Lgeuu6U56o4WYcoeNjuw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D9.72186548088149%26panoid%3Ds3Lgeuu6U56o4WYcoeNjuw%26yaw%3D358.4689359534651!7i16384!8i8192!4m6!3m5!1s0x3397af9b50c0f7b9:0x46199cf7462f3699!8m2!3d14.7995195!4d121.0672928!16s%2Fg%2F11yjgqx1yd?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="branch-card" aria-label="View Gumaoc East branch on Google Maps">
+                <div class="branch-card-icon" aria-hidden="true">📍</div>
+                <h4>Gumaoc East</h4>
+                <p>Blk. 2, Gumaok East<br />City of San Jose del Monte, Bulacan</p>
+            </a>
+            <a href="https://www.google.com/maps/place/BLK+7+gumaoc+central/@14.7999213,121.0652183,3a,75y,340.84h,84.81t/data=!3m7!1e1!3m5!1sMy3d3x3KeRAJbo4zQr_5PQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D5.189999999999998%26panoid%3DMy3d3x3KeRAJbo4zQr_5PQ%26yaw%3D340.84!7i16384!8i8192!4m7!3m6!1s0x3397af4fb8442e39:0x5c1a1c67f7da0e22!8m2!3d14.8016476!4d121.0642384!10e5!16s%2Fg%2F11p_5v7htw?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="branch-card" aria-label="View Gumaoc Central branch on Google Maps">
+                <div class="branch-card-icon" aria-hidden="true">📍</div>
+                <h4>Gumaoc Central</h4>
+                <p>Blk. 7 Gumaoc Central<br />San Jose del Monte, Bulacan</p>
+            </a>
+            <a href="https://www.google.com/maps/place/Block+12+Gumaoc+West+San+Jose+Del+Monte+Bulacan/@14.7996121,121.0606294,3a,48.9y,359.15h,73.91t/data=!3m7!1e1!3m5!1sovA3Qn9Q66GfREahfFpQ6g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D16.092592189396456%26panoid%3DovA3Qn9Q66GfREahfFpQ6g%26yaw%3D359.1541964104024!7i16384!8i8192!4m6!3m5!1s0x3397af005d42d725:0x9fbd5d45b7e39db4!8m2!3d14.79945!4d121.061218!16s%2Fg%2F11xt2km1f3?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="branch-card" aria-label="View Gumaoc West branch on Google Maps">
+                <div class="branch-card-icon" aria-hidden="true">📍</div>
+                <h4>Gumaoc West</h4>
+                <p>Blk. 12, Gumaoc West<br />City of San Jose del Monte, Bulacan</p>
             </a>
         </div>
 
@@ -1817,12 +1886,6 @@
             </form>
         </div>
 
-        <a href="https://www.facebook.com/J3FFPRINTING" target="_blank" class="facebook-link" aria-label="Visit our Facebook page">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.955 10.125 11.854v-8.385H7.078v-3.47h3.047V9.283c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.028 24 18.062 24 12.073z" />
-            </svg>
-            Visit Our Facebook Page
-        </a>
     </section>
 
     <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
@@ -1867,12 +1930,10 @@
 
     <script>
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const isMobile = window.innerWidth <= 768;
 
         const canvas = document.getElementById("bgCanvas");
         const ctx = canvas.getContext("2d");
         let particles = [];
-        let animId = null;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -1921,7 +1982,7 @@
                     p.update();
                     p.draw();
                 });
-                animId = requestAnimationFrame(animateParticles);
+                requestAnimationFrame(animateParticles);
             }
             animateParticles();
         }
@@ -2371,7 +2432,6 @@
         ];
 
         const serviceModal = document.getElementById("serviceModal");
-        const serviceModalContent = document.getElementById("serviceModalContent");
         const serviceModalIcon = document.getElementById("serviceModalIcon");
         const serviceModalTitle = document.getElementById("serviceModalTitle");
         const serviceModalDesc = document.getElementById("serviceModalDesc");
